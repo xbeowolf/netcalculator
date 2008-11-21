@@ -1,0 +1,16 @@
+D:\Projects\NetCalculator\bin\Release\NetCalculator.exe.config
+D:\Projects\NetCalculator\obj\Release\NetCalculator.exe
+D:\Projects\NetCalculator\obj\Release\NetCalculator.pdb
+D:\Projects\NetCalculator\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\NetCalculator\obj\Release\NetCalculator.NetTerm.resources
+D:\Projects\NetCalculator\obj\Release\NetCalculator.NetCalculator.resources
+D:\Projects\NetCalculator\obj\Release\NetCalculator.Properties.Resources.resources
+D:\Projects\NetCalculator\obj\Release\NetCalculator.NetCalculatorRes.resources
+D:\Projects\NetCalculator\obj\Release\NetCalculator.csproj.GenerateResource.Cache
+D:\Projects\NetCalculator\bin\Release\NetCalculator.exe
+D:\Projects\NetCalculator\bin\Release\NetCalculator.pdb
+D:\Projects\NetCalculator\bin\Release\NetCalculator.exe.manifest
+D:\Projects\NetCalculator\bin\Release\NetCalculator.application
+D:\Projects\NetCalculator\obj\Release\NetCalculator.TrustInfo.xml
+D:\Projects\NetCalculator\obj\Release\NetCalculator.exe.manifest
+D:\Projects\NetCalculator\obj\Release\NetCalculator.application
