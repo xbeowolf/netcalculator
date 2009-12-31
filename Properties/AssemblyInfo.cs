@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Expressions evaluator")]
-[assembly: AssemblyDescription("NetCalculator started 07.07.2007. Developer contacts: mailto:xbeowolf@gmail.com; icq:320-329-575; phone:+380-68-4862837")]
+[assembly: AssemblyDescription("NetCalculator started 07.07.2007. Developer contacts: mailto:xbeowolf@gmail.com; icq:320329575; phone:+380684862837")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MetaShape")]
 [assembly: AssemblyProduct("NetCalculator")]
-[assembly: AssemblyCopyright("© BEOWOLF / Podobashev Dmitry, 2007")]
+[assembly: AssemblyCopyright("© BEOWOLF / Podobashev Dmitry, 2009")]
 [assembly: AssemblyTrademark("xBEOWOLF")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.2.1.1")]
-[assembly: AssemblyFileVersion("1.2.1.1")]
+[assembly: AssemblyVersion("1.2.2.1")]
+[assembly: AssemblyFileVersion("1.2.2.1")]

@@ -107,7 +107,7 @@ namespace NetCalculator
             this.interfaceToolStripMenuItem,
             this.termToolStripMenuItem});
 					this.expressContextMenuStrip.Name = "expressContextMenuStrip";
-					this.expressContextMenuStrip.Size = new System.Drawing.Size(186, 192);
+					this.expressContextMenuStrip.Size = new System.Drawing.Size(186, 214);
 					this.expressContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripExpress_Opening);
 					// 
 					// evaluateToolStripMenuItem
