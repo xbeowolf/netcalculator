@@ -82,7 +82,7 @@ namespace Expression
 			"hypot",
 			// Statistical functions
 			"Amean", "Gmean", "Hmean", "Rmean",
-			"deviation",
+			"variance", "deviation",
 			// min, max, doz functions
 			"min", "max", "doz",
 			// Functions of transformation
@@ -586,26 +586,26 @@ namespace Expression
 		/// <returns>Result of calculation</returns>
 		protected double expressTerm(ref int curpos, ref string lexeme, ref Lexeme type)
 		{
-			int pos = curpos;
-			string term = lexeme;
-			Lexeme ttype = type;
+			int curpos0 = curpos;
+			string lexeme0 = lexeme;
+			Lexeme type0 = type;
 			extractLexem(ref curpos, out lexeme, out type);
-			switch (ttype)
+			switch (type0)
 			{
 				case Lexeme.Term:
-					return expressBuiltinTerm(term, ref curpos, ref lexeme, ref type);
+					return expressBuiltinTerm(lexeme0, ref curpos, ref lexeme, ref type);
 
 				case Lexeme.Decimal:
-					return Convert.ToDouble(term.Replace('.', ','));
+					return Convert.ToDouble(lexeme0.Replace('.', ','));
 
 				case Lexeme.Hexadecimal:
-					return ParseHex(term);
+					return ParseHex(lexeme0);
 
 				case Lexeme.Operator:
-					throw new ExpressException("Unexpected operator", pos, term);
+					throw new ExpressException("Unexpected operator", curpos0, lexeme0);
 
 				case Lexeme.Unknown:
-					throw new ExpressException("Undefined lexeme, constant or function or floating decimal wanted here", pos, term);
+					throw new ExpressException("Undefined lexeme, constant or function or floating decimal wanted here", curpos0, lexeme0);
 
 				case Lexeme.End:
 				default:
@@ -987,6 +987,24 @@ namespace Expression
 							d += v * v;
 						}
 						return Math.Sqrt(d / args.Count);
+					}
+
+				case "variance":
+					{
+						double A = 0, d = 0;
+						List<double> args = new List<double>();
+						expressFactor(args, ref curpos, ref lexeme, ref type);
+						if (args.Count == 0) throw new ExpressException("Function \"Variance\" expects at last 1 argument", curpos, lexeme);
+						foreach (double v in args)
+						{
+							A += v;
+						}
+						A /= args.Count;
+						foreach (double v in args)
+						{
+							d += (v - A) * (v - A);
+						}
+						return d / args.Count;
 					}
 
 				case "deviation":

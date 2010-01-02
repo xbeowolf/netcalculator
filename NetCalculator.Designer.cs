@@ -75,7 +75,7 @@ namespace NetCalculator
 					this.richExpression.DetectUrls = false;
 					this.richExpression.Dock = System.Windows.Forms.DockStyle.Fill;
 					this.richExpression.EnableAutoDragDrop = true;
-					this.richExpression.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+					this.richExpression.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 					this.richExpression.HideSelection = false;
 					this.netcalcErrorProvider.SetIconPadding(this.richExpression, -16);
 					this.richExpression.Location = new System.Drawing.Point(0, 0);
@@ -107,12 +107,12 @@ namespace NetCalculator
             this.interfaceToolStripMenuItem,
             this.termToolStripMenuItem});
 					this.expressContextMenuStrip.Name = "expressContextMenuStrip";
-					this.expressContextMenuStrip.Size = new System.Drawing.Size(186, 214);
+					this.expressContextMenuStrip.Size = new System.Drawing.Size(186, 192);
 					this.expressContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripExpress_Opening);
 					// 
 					// evaluateToolStripMenuItem
 					// 
-					this.evaluateToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+					this.evaluateToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 					this.evaluateToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
 					this.evaluateToolStripMenuItem.Name = "evaluateToolStripMenuItem";
 					this.evaluateToolStripMenuItem.ShortcutKeyDisplayString = "";
@@ -278,9 +278,13 @@ namespace NetCalculator
 					this.scalebyzoomingToolStripMenuItem.ToolTipText = "On checked state indicates for scaling controls content by zooming,\r\non unchecked" +
 							" indicates for scaling content by font resizing.\r\nIt\'s has a mean for rich text " +
 							"copy-paste operations.";
+					this.scalebyzoomingToolStripMenuItem.CheckedChanged += new System.EventHandler(this.scalebyzoomingToolStripMenuItem_CheckedChanged);
 					// 
 					// fontToolStripComboBox
 					// 
+					this.fontToolStripComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+					this.fontToolStripComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+					this.fontToolStripComboBox.BackColor = System.Drawing.SystemColors.Window;
 					this.fontToolStripComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 					this.fontToolStripComboBox.Items.AddRange(new object[] {
             "Arial",
@@ -309,6 +313,7 @@ namespace NetCalculator
             "Tahoma",
             "Terminal",
             "Times New Roman"});
+					this.fontToolStripComboBox.MaxLength = 32;
 					this.fontToolStripComboBox.Name = "fontToolStripComboBox";
 					this.fontToolStripComboBox.Size = new System.Drawing.Size(121, 21);
 					this.fontToolStripComboBox.Sorted = true;
@@ -357,7 +362,7 @@ namespace NetCalculator
 					this.richResult.DetectUrls = false;
 					this.richResult.Dock = System.Windows.Forms.DockStyle.Fill;
 					this.richResult.EnableAutoDragDrop = true;
-					this.richResult.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+					this.richResult.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 					this.richResult.HideSelection = false;
 					this.netcalcErrorProvider.SetIconPadding(this.richResult, -16);
 					this.richResult.Location = new System.Drawing.Point(0, 0);

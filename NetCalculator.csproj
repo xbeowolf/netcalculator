@@ -120,7 +120,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="NetCalculator.docx" />
     <None Include="Resources\IconMain.ico" />
   </ItemGroup>
   <ItemGroup>

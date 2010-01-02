@@ -100,7 +100,7 @@ namespace NetCalculator
 			TermForm = new NetTerm(richExpression);
 
 			express = new Expression.Expression();
-			font = "Tahoma";
+			fontToolStripComboBox.Text = font = "Arial";
 
 			this.AddOwnedForm(TermForm);
 		}
@@ -392,26 +392,57 @@ namespace NetCalculator
 			inactiveopacity = 1 - inactiveopacityToolStripComboBox.SelectedIndex * 0.05f;
 		}
 
+		private const float FontFactor = 0.75f;
+
+		private void scalebyzoomingToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+		{
+			if (scalebyzoomingToolStripMenuItem.Checked)
+			{
+				richExpression.Font = richResult.Font = new Font(font, 28 * FontFactor, GraphicsUnit.Pixel);
+				richExpression.ZoomFactor = richResult.ZoomFactor = (float)richExpression.Height / 28;
+			}
+			else
+			{
+				richExpression.Font = richResult.Font = new Font(font, richExpression.Height * FontFactor, GraphicsUnit.Pixel);
+				richExpression.ZoomFactor = richResult.ZoomFactor = 1;
+			}
+		}
+
 		private void fontToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			richExpression.Font = richResult.Font = new Font(fontToolStripComboBox.Text, scalebyzoomingToolStripMenuItem.Checked ? richExpression.Height * 0.78f : 16, GraphicsUnit.Pixel);
 			font = fontToolStripComboBox.Text;
+			if (scalebyzoomingToolStripMenuItem.Checked)
+			{
+				richExpression.Font = richResult.Font = new Font(font, 28 * FontFactor, GraphicsUnit.Pixel);
+			}
+			else
+			{
+				richExpression.Font = richResult.Font = new Font(font, richExpression.Height * FontFactor, GraphicsUnit.Pixel);
+			}
 		}
 
 		private void richExpression_SizeChanged(object sender, EventArgs e)
 		{
 			if (scalebyzoomingToolStripMenuItem.Checked)
+			{
 				richExpression.ZoomFactor = (float)richExpression.Height / 28;
+			}
 			else
-				richExpression.Font = new Font(font, richExpression.Height * 0.75f, GraphicsUnit.Pixel);
+			{
+				richExpression.Font = new Font(font, richExpression.Height * FontFactor, GraphicsUnit.Pixel);
+			}
 		}
 
 		private void richResult_SizeChanged(object sender, EventArgs e)
 		{
 			if (scalebyzoomingToolStripMenuItem.Checked)
-				richResult.ZoomFactor = (float)richResult.Height / 28;
+			{
+				richResult.ZoomFactor = (float)richResult.Height / 28f;
+			}
 			else
-				richResult.Font = new Font(font, richResult.Height * 0.75f, GraphicsUnit.Pixel);
+			{
+				richResult.Font = new Font(font, richResult.Height * FontFactor, GraphicsUnit.Pixel);
+			}
 		}
 
 		private void termToolStripMenuItem_Click(object sender, EventArgs e)
