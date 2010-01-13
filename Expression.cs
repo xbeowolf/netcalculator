@@ -28,33 +28,76 @@ namespace Expression
 		/// <summary>
 		/// Type of expression lexeme
 		/// </summary>
-		public enum Lexeme { Operator, Term, Decimal, Hexadecimal, End, Unknown };
+		public enum Lexeme {
+			Unknown, End,
+			NumDecimal, NumHexadecimal,
+			OpComma, OpBoolean, OpRelational, OpBitwise, OpAdditive, OpMultiplicative, OpPower, OpPrefixPostfix, OpBrackets,
+			Term,
+		};
+
+		/// <summary>
+		/// Terms of any kind
+		/// </summary>
+		public struct Builtin
+		{
+			public Builtin(Lexeme k, string[] t)
+			{
+				Key = k;
+				Term = t;
+			}
+
+			public Lexeme Key;
+			public string[] Term;
+		};
 
 		/// <summary>
 		/// Operators buit-in lexemes
 		/// </summary>
-		static public string[] BuiltinOp = {
+		static public Builtin[] BuiltinOp =
+		{
 			// Comma operators
-			",",
-			"comma",
+			new Builtin(Lexeme.OpComma, new string[] {
+				",",
+				"comma",
+			}),
 			// Boolean operators
-			"&&", "||", "@@", "->", "<->",
-			"and", "or", "xor", "imp", "equ",
+			new Builtin(Lexeme.OpBoolean, new string[] {
+				"&&", "||", "@@", "->", "<->",
+				"and", "or", "xor", "imp", "equ",
+			}),
 			// Relational operators
-			"<>",
-			"<=", ">=", "<", ">", "==", "!=",
+			new Builtin(Lexeme.OpRelational, new string[] {
+				"<>",
+				"<=", ">=", "<", ">", "==", "!=",
+			}),
 			// Bitwise operators
-			"&", "|", "@",
+			new Builtin(Lexeme.OpBitwise, new string[] {
+				"&", "|", "@",
+			}),
 			// Additive operators
-			"+", "-",
-			"plus", "minus",
+			new Builtin(Lexeme.OpAdditive, new string[] {
+				"+", "-",
+				"plus", "minus",
+			}),
 			// Multiplicative operators
-			"*", "/", "%",
-			"mod",
+			new Builtin(Lexeme.OpMultiplicative, new string[] {
+				"*", "/", "%",
+				"mod",
+			}),
 			// Power operators
-			"^",
+			new Builtin(Lexeme.OpPower, new string[] {
+				"^",
+			}),
+			// Prefix/postfix operators
+			new Builtin(Lexeme.OpPrefixPostfix, new string[] {
+				"!",
+			}),
 			// Brackets operators
-			"(", ")", "[", "]", "{", "}"
+			new Builtin(Lexeme.OpBrackets, new string[] {
+				"(", ")",
+				"[", "]",
+				"{", "}"
+			}),
 		};
 
 		/// <summary>
@@ -164,8 +207,7 @@ namespace Expression
 			else args.Add(d);
 			i++;
 
-			bool complete = type == Lexeme.End;
-			while (!complete)
+			while (type == Lexeme.OpComma)
 			{
 				switch (lexeme)
 				{
@@ -181,10 +223,7 @@ namespace Expression
 						}
 
 					default:
-						//if (lexeme != ")" && lexeme != "]" && lexeme != "}")
-							//throw new ExpressException("Undefined lexeme, operator wanted here", curpos, lexeme);
-						complete = true;
-						break;
+						throw new ExpressException("Invalid comma operator", curpos, lexeme);
 				}
 			}
 			return i;
@@ -200,8 +239,7 @@ namespace Expression
 		protected double expressBoolean(ref int curpos, ref string lexeme, ref Lexeme type)
 		{
 			double d = expressRelational(ref curpos, ref lexeme, ref type);
-			bool complete = type == Lexeme.End;
-			while (!complete)
+			while (type == Lexeme.OpBoolean)
 			{
 				switch (lexeme)
 				{
@@ -251,8 +289,7 @@ namespace Expression
 						}
 
 					default:
-						complete = true;
-						break;
+						throw new ExpressException("Invalid boolean operator", curpos, lexeme);
 				}
 			}
 			return d;
@@ -268,8 +305,7 @@ namespace Expression
 		protected double expressRelational(ref int curpos, ref string lexeme, ref Lexeme type)
 		{
 			double d = expressBitwise(ref curpos, ref lexeme, ref type);
-			bool complete = type == Lexeme.End;
-			while (!complete)
+			while (type == Lexeme.OpRelational)
 			{
 				switch (lexeme)
 				{
@@ -317,8 +353,7 @@ namespace Expression
 						}
 
 					default:
-						complete = true;
-						break;
+						throw new ExpressException("Invalid relational operator", curpos, lexeme);
 				}
 			}
 			return d;
@@ -334,8 +369,7 @@ namespace Expression
 		protected double expressBitwise(ref int curpos, ref string lexeme, ref Lexeme type)
 		{
 			double d = expressAdditive(ref curpos, ref lexeme, ref type);
-			bool complete = type == Lexeme.End;
-			while (!complete)
+			while (type == Lexeme.OpBitwise)
 			{
 				switch (lexeme)
 				{
@@ -361,8 +395,7 @@ namespace Expression
 						}
 
 					default:
-						complete = true;
-						break;
+						throw new ExpressException("Invalid bitwise operator", curpos, lexeme);
 				}
 			}
 			return d;
@@ -378,8 +411,7 @@ namespace Expression
 		protected double expressAdditive(ref int curpos, ref string lexeme, ref Lexeme type)
 		{
 			double d = expressMultiplicative(ref curpos, ref lexeme, ref type);
-			bool complete = type == Lexeme.End;
-			while (!complete)
+			while (type == Lexeme.OpAdditive)
 			{
 				switch (lexeme)
 				{
@@ -400,8 +432,7 @@ namespace Expression
 						}
 
 					default:
-						complete = true;
-						break;
+						throw new ExpressException("Invalid additive operator", curpos, lexeme);
 				}
 			}
 			return d;
@@ -417,8 +448,7 @@ namespace Expression
 		protected double expressMultiplicative(ref int curpos, ref string lexeme, ref Lexeme type)
 		{
 			double d = expressPower(ref curpos, ref lexeme, ref type);
-			bool complete = type == Lexeme.End;
-			while (!complete)
+			while (type == Lexeme.OpMultiplicative)
 			{
 				switch (lexeme)
 				{
@@ -445,8 +475,7 @@ namespace Expression
 						}
 
 					default:
-						complete = true;
-						break;
+						throw new ExpressException("Invalid multiplicative operator", curpos, lexeme);
 				}
 			}
 			return d;
@@ -461,23 +490,71 @@ namespace Expression
 		/// <returns>Result of calculation</returns>
 		protected double expressPower(ref int curpos, ref string lexeme, ref Lexeme type)
 		{
-			double d = expressSign(ref curpos, ref lexeme, ref type);
-			bool complete = type == Lexeme.End;
-			while (!complete)
+			double d = expressPrefix(ref curpos, ref lexeme, ref type);
+			while (type == Lexeme.OpPower)
 			{
 				switch (lexeme)
 				{
 					case "^":
 						{
 							extractLexem(ref curpos, out lexeme, out type);
-							d = Math.Pow(d, expressSign(ref curpos, ref lexeme, ref type));
+							d = Math.Pow(d, expressPrefix(ref curpos, ref lexeme, ref type));
 							break;
 						}
 
 					default:
-						complete = true;
-						break;
+						throw new ExpressException("Invalid power operator", curpos, lexeme);
 				}
+			}
+			return d;
+		}
+
+		/// <summary>
+		/// Evalutes prefix operations
+		/// </summary>
+		/// <param name="curpos">Current position of string expression processing</param>
+		/// <param name="lexeme">Current processing lexeme</param>
+		/// <param name="type">Type of current processing lexeme</param>
+		/// <returns>Result of calculation</returns>
+		protected double expressPrefix(ref int curpos, ref string lexeme, ref Lexeme type)
+		{
+			double d;
+			switch (lexeme)
+			{
+				case "!":
+					{
+						extractLexem(ref curpos, out lexeme, out type);
+						d = expressPostfix(ref curpos, ref lexeme, ref type) == 0 ? 1 : 0;
+						break;
+					}
+
+				default:
+					d = expressPostfix(ref curpos, ref lexeme, ref type);
+					break;
+			}
+			return d;
+		}
+
+		/// <summary>
+		/// Evalutes postfix operations
+		/// </summary>
+		/// <param name="curpos">Current position of string expression processing</param>
+		/// <param name="lexeme">Current processing lexeme</param>
+		/// <param name="type">Type of current processing lexeme</param>
+		/// <returns>Result of calculation</returns>
+		protected double expressPostfix(ref int curpos, ref string lexeme, ref Lexeme type)
+		{
+			double d = expressSign(ref curpos, ref lexeme, ref type);
+			switch (lexeme)
+			{
+				case "!":
+					{
+						extractLexem(ref curpos, out lexeme, out type);
+						int n = (int)d;
+						d = 1;
+						for (int i = 1; i <= n; d *= i, i++) { }
+						break;
+					}
 			}
 			return d;
 		}
@@ -592,21 +669,35 @@ namespace Expression
 			extractLexem(ref curpos, out lexeme, out type);
 			switch (type0)
 			{
+				case Lexeme.NumDecimal:
+					return Convert.ToDouble(lexeme0.Replace('.', ','));
+				case Lexeme.NumHexadecimal:
+					return ParseHex(lexeme0);
+
 				case Lexeme.Term:
 					return expressBuiltinTerm(lexeme0, ref curpos, ref lexeme, ref type);
 
-				case Lexeme.Decimal:
-					return Convert.ToDouble(lexeme0.Replace('.', ','));
-
-				case Lexeme.Hexadecimal:
-					return ParseHex(lexeme0);
-
-				case Lexeme.Operator:
-					throw new ExpressException("Unexpected operator", curpos0, lexeme0);
+				case Lexeme.OpComma:
+					throw new ExpressException("Unexpected comma operator", curpos0, lexeme0);
+				case Lexeme.OpBoolean:
+					throw new ExpressException("Unexpected boolean operator", curpos0, lexeme0);
+				case Lexeme.OpRelational:
+					throw new ExpressException("Unexpected relational operator", curpos0, lexeme0);
+				case Lexeme.OpBitwise:
+					throw new ExpressException("Unexpected bitwise operator", curpos0, lexeme0);
+				case Lexeme.OpAdditive:
+					throw new ExpressException("Unexpected additive operator", curpos0, lexeme0);
+				case Lexeme.OpMultiplicative:
+					throw new ExpressException("Unexpected multiplicative operator", curpos0, lexeme0);
+				case Lexeme.OpPower:
+					throw new ExpressException("Unexpected power operator", curpos0, lexeme0);
+				case Lexeme.OpPrefixPostfix:
+					throw new ExpressException("Unexpected prefix or posfix operator", curpos0, lexeme0);
+				case Lexeme.OpBrackets:
+					throw new ExpressException("Unexpected brackets operator", curpos0, lexeme0);
 
 				case Lexeme.Unknown:
-					throw new ExpressException("Undefined lexeme, constant or function or floating decimal wanted here", curpos0, lexeme0);
-
+					throw new ExpressException("Undefined lexeme, constant or function, or floating decimal wanted here", curpos0, lexeme0);
 				case Lexeme.End:
 				default:
 					throw new ExpressException("Unexpected end of expression");
@@ -1136,14 +1227,17 @@ namespace Expression
 			}
 
 			// Extract operator
-			for (int i = 0; i < BuiltinOp.Length; i++)
+			for( int i = 0; i < BuiltinOp.Length; i++ )
 			{
-				if (String.Compare(express, curpos, BuiltinOp[i], 0, BuiltinOp[i].Length) == 0)
+				for( int j = 0; j < BuiltinOp[i].Term.Length; j++ )
 				{
-					curpos += BuiltinOp[i].Length;
-					lexeme = BuiltinOp[i];
-					type = Lexeme.Operator;
-					return;
+					if (String.Compare(express, curpos, BuiltinOp[i].Term[j], 0, BuiltinOp[i].Term[j].Length) == 0)
+					{
+						curpos += BuiltinOp[i].Term[j].Length;
+						lexeme = BuiltinOp[i].Term[j];
+						type = BuiltinOp[i].Key;
+						return;
+					}
 				}
 			}
 
@@ -1183,7 +1277,7 @@ namespace Expression
 						else complete = true;
 						complete |= curpos >= express.Length;
 					}
-					type = Lexeme.Hexadecimal;
+					type = Lexeme.NumHexadecimal;
 				}
 				else // extract decimal
 				{
@@ -1223,7 +1317,7 @@ namespace Expression
 									else complete = true;
 						complete |= curpos >= express.Length;
 					}
-					type = Lexeme.Decimal;
+					type = Lexeme.NumDecimal;
 				}
 			}
 			lexeme = express.Substring(start, curpos - start);
