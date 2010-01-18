@@ -17,10 +17,16 @@ namespace NetCalculator
 		/// </summary>
 		private RichTextBox rich;
 
-		public NetTerm(RichTextBox r)
+		/// <summary>
+		/// Expression object representation
+		/// </summary>
+		private Expression.Expression express;
+
+		public NetTerm(RichTextBox r, Expression.Expression e)
 		{
-			rich = r;
 			InitializeComponent();
+			rich = r;
+			express = e;
 		}
 
 		public bool SelectTerm(string term)
@@ -28,6 +34,7 @@ namespace NetCalculator
 			ListViewItem lvi = listViewTerm.FindItemWithText(term, false, 0);
 			if (lvi != null)
 			{
+				if (tabControlTerm.SelectedIndex != 0) tabControlTerm.SelectedIndex = 0;
 				lvi.Focused = true;
 				lvi.Selected = true;
 				listViewTerm.EnsureVisible(lvi.Index);
@@ -43,8 +50,8 @@ namespace NetCalculator
 			{
 				string str = rich.Text;
 				int pos = rich.SelectionStart, start = pos, end = pos;
-				for (start = pos; start > 0 && Expression.Expression.isFuncChar(str[start - 1]); start--) ;
-				for (end = pos; end < str.Length && Expression.Expression.isFuncChar(str[end]); end++) ;
+				for (start = pos; start > 0 && Expression.Expression.isAlphaChar(str[start - 1]); start--) ;
+				for (end = pos; end < str.Length && Expression.Expression.isAlphaChar(str[end]); end++) ;
 				str = str.Remove(start, end - start);
 				str = str.Insert(start, item.Text);
 				rich.Text = str;
@@ -88,6 +95,27 @@ namespace NetCalculator
 		private void listViewTerm_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
 			InsertSelectedTerm();
+		}
+
+		private void dataGridViewVars_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+		{
+			for (int i = e.RowCount; i > 0; i--)
+				express.Variables.Insert(e.RowIndex - 1, new Expression.Expression.KeyValuePair<string, double>("", 0));
+		}
+
+		private void dataGridViewVars_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+		{
+			for (int i = e.RowCount; i > 0; i--)
+				express.Variables.RemoveAt(e.RowIndex);
+		}
+
+		private void dataGridViewVars_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex < 0) return;
+			if (e.ColumnIndex == 0)
+				express.Variables[e.RowIndex].Key = dataGridViewVars[0, e.RowIndex].Value.ToString();
+			else
+				express.Variables[e.RowIndex].Value = Convert.ToDouble(dataGridViewVars[1, e.RowIndex].Value.ToString().Replace('.', ','));
 		}
 	}
 }

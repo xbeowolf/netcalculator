@@ -29,6 +29,7 @@ namespace NetCalculator
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NetTerm));
 			System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Constants", System.Windows.Forms.HorizontalAlignment.Left);
 			System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Trigonometrical functions", System.Windows.Forms.HorizontalAlignment.Left);
 			System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Logarithmic and power functions", System.Windows.Forms.HorizontalAlignment.Left);
@@ -284,8 +285,8 @@ namespace NetCalculator
             "returns the largest integer less than or equal to x"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
 			System.Windows.Forms.ListViewItem listViewItem58 = new System.Windows.Forms.ListViewItem(new string[] {
             "round",
-            "round(x)",
-            "rounds a value to the nearest integer"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
+            "round(x, p = 0)",
+            "rounds a value to the nearest integer with specified precision"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
 			System.Windows.Forms.ListViewItem listViewItem59 = new System.Windows.Forms.ListViewItem(new string[] {
             "abs",
             "abs(x)",
@@ -294,23 +295,118 @@ namespace NetCalculator
             "sign",
             "sign(x)",
             "value indicating the sign of x"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NetTerm));
-			this.listViewTerm = new System.Windows.Forms.ListView();
-			this.columnHeaderName = new System.Windows.Forms.ColumnHeader();
-			this.columnHeaderArgs = new System.Windows.Forms.ColumnHeader();
-			this.columnHeaderComments = new System.Windows.Forms.ColumnHeader();
-			this.columnHeaderSynonym = new System.Windows.Forms.ColumnHeader();
 			this.contextMenuStripTerm = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.detailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.smalliconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.tabControlTerm = new System.Windows.Forms.TabControl();
+			this.tabPageBuiltin = new System.Windows.Forms.TabPage();
+			this.tabPageVariables = new System.Windows.Forms.TabPage();
+			this.listViewTerm = new System.Windows.Forms.ListView();
+			this.columnHeaderName = new System.Windows.Forms.ColumnHeader();
+			this.columnHeaderArgs = new System.Windows.Forms.ColumnHeader();
+			this.columnHeaderComments = new System.Windows.Forms.ColumnHeader();
+			this.columnHeaderSynonym = new System.Windows.Forms.ColumnHeader();
+			this.dataGridViewVars = new System.Windows.Forms.DataGridView();
+			this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColumnValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.contextMenuStripTerm.SuspendLayout();
+			this.tabControlTerm.SuspendLayout();
+			this.tabPageBuiltin.SuspendLayout();
+			this.tabPageVariables.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewVars)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// contextMenuStripTerm
+			// 
+			this.contextMenuStripTerm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.detailsToolStripMenuItem,
+            this.smalliconsToolStripMenuItem,
+            this.listToolStripMenuItem,
+            this.tileToolStripMenuItem});
+			this.contextMenuStripTerm.Name = "contextMenuStripTerm";
+			this.contextMenuStripTerm.Size = new System.Drawing.Size(126, 92);
+			// 
+			// detailsToolStripMenuItem
+			// 
+			this.detailsToolStripMenuItem.Checked = true;
+			this.detailsToolStripMenuItem.CheckOnClick = true;
+			this.detailsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.detailsToolStripMenuItem.Name = "detailsToolStripMenuItem";
+			this.detailsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.detailsToolStripMenuItem.Text = "Details";
+			this.detailsToolStripMenuItem.ToolTipText = resources.GetString("detailsToolStripMenuItem.ToolTipText");
+			this.detailsToolStripMenuItem.Click += new System.EventHandler(this.detailsToolStripMenuItem_Click);
+			// 
+			// smalliconsToolStripMenuItem
+			// 
+			this.smalliconsToolStripMenuItem.CheckOnClick = true;
+			this.smalliconsToolStripMenuItem.Name = "smalliconsToolStripMenuItem";
+			this.smalliconsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.smalliconsToolStripMenuItem.Text = "Small icons";
+			this.smalliconsToolStripMenuItem.ToolTipText = "Each item appears as a small icon with a label to its right.";
+			this.smalliconsToolStripMenuItem.Click += new System.EventHandler(this.smalliconsToolStripMenuItem_Click);
+			// 
+			// listToolStripMenuItem
+			// 
+			this.listToolStripMenuItem.CheckOnClick = true;
+			this.listToolStripMenuItem.Name = "listToolStripMenuItem";
+			this.listToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.listToolStripMenuItem.Text = "List";
+			this.listToolStripMenuItem.ToolTipText = "Each item appears as a small icon with a label to its right.\r\nItems are arranged " +
+					"in columns with no column headers.";
+			this.listToolStripMenuItem.Click += new System.EventHandler(this.listToolStripMenuItem_Click);
+			// 
+			// tileToolStripMenuItem
+			// 
+			this.tileToolStripMenuItem.CheckOnClick = true;
+			this.tileToolStripMenuItem.Name = "tileToolStripMenuItem";
+			this.tileToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.tileToolStripMenuItem.Text = "Tile";
+			this.tileToolStripMenuItem.ToolTipText = resources.GetString("tileToolStripMenuItem.ToolTipText");
+			this.tileToolStripMenuItem.Click += new System.EventHandler(this.tileToolStripMenuItem_Click);
+			// 
+			// tabControlTerm
+			// 
+			this.tabControlTerm.Controls.Add(this.tabPageBuiltin);
+			this.tabControlTerm.Controls.Add(this.tabPageVariables);
+			this.tabControlTerm.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControlTerm.HotTrack = true;
+			this.tabControlTerm.Location = new System.Drawing.Point(0, 0);
+			this.tabControlTerm.Name = "tabControlTerm";
+			this.tabControlTerm.SelectedIndex = 0;
+			this.tabControlTerm.Size = new System.Drawing.Size(400, 200);
+			this.tabControlTerm.TabIndex = 0;
+			// 
+			// tabPageBuiltin
+			// 
+			this.tabPageBuiltin.Controls.Add(this.listViewTerm);
+			this.tabPageBuiltin.Location = new System.Drawing.Point(4, 22);
+			this.tabPageBuiltin.Name = "tabPageBuiltin";
+			this.tabPageBuiltin.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageBuiltin.Size = new System.Drawing.Size(392, 174);
+			this.tabPageBuiltin.TabIndex = 0;
+			this.tabPageBuiltin.Text = "Builtin";
+			this.tabPageBuiltin.ToolTipText = "Builtin constants and functions";
+			this.tabPageBuiltin.UseVisualStyleBackColor = true;
+			// 
+			// tabPageVariables
+			// 
+			this.tabPageVariables.Controls.Add(this.dataGridViewVars);
+			this.tabPageVariables.Location = new System.Drawing.Point(4, 22);
+			this.tabPageVariables.Name = "tabPageVariables";
+			this.tabPageVariables.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageVariables.Size = new System.Drawing.Size(392, 174);
+			this.tabPageVariables.TabIndex = 1;
+			this.tabPageVariables.Text = "Variables";
+			this.tabPageVariables.ToolTipText = "User defined variables";
+			this.tabPageVariables.UseVisualStyleBackColor = true;
 			// 
 			// listViewTerm
 			// 
 			this.listViewTerm.Activation = System.Windows.Forms.ItemActivation.OneClick;
+			this.listViewTerm.AllowColumnReorder = true;
 			this.listViewTerm.BackColor = System.Drawing.SystemColors.Info;
 			this.listViewTerm.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderName,
@@ -594,12 +690,12 @@ namespace NetCalculator
             listViewItem58,
             listViewItem59,
             listViewItem60});
-			this.listViewTerm.Location = new System.Drawing.Point(0, 0);
+			this.listViewTerm.Location = new System.Drawing.Point(3, 3);
 			this.listViewTerm.MultiSelect = false;
 			this.listViewTerm.Name = "listViewTerm";
 			this.listViewTerm.ShowItemToolTips = true;
-			this.listViewTerm.Size = new System.Drawing.Size(400, 200);
-			this.listViewTerm.TabIndex = 0;
+			this.listViewTerm.Size = new System.Drawing.Size(386, 168);
+			this.listViewTerm.TabIndex = 1;
 			this.listViewTerm.UseCompatibleStateImageBehavior = false;
 			this.listViewTerm.View = System.Windows.Forms.View.Details;
 			this.listViewTerm.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewTerm_MouseDoubleClick);
@@ -617,60 +713,41 @@ namespace NetCalculator
 			// columnHeaderComments
 			// 
 			this.columnHeaderComments.Text = "Comments";
-			this.columnHeaderComments.Width = 150;
+			this.columnHeaderComments.Width = 140;
 			// 
 			// columnHeaderSynonym
 			// 
 			this.columnHeaderSynonym.Text = "Synonym";
 			// 
-			// contextMenuStripTerm
+			// dataGridViewVars
 			// 
-			this.contextMenuStripTerm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.detailsToolStripMenuItem,
-            this.smalliconsToolStripMenuItem,
-            this.listToolStripMenuItem,
-            this.tileToolStripMenuItem});
-			this.contextMenuStripTerm.Name = "contextMenuStripTerm";
-			this.contextMenuStripTerm.Size = new System.Drawing.Size(126, 92);
+			this.dataGridViewVars.AllowUserToOrderColumns = true;
+			this.dataGridViewVars.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+			this.dataGridViewVars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewVars.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnName,
+            this.ColumnValue});
+			this.dataGridViewVars.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridViewVars.Location = new System.Drawing.Point(3, 3);
+			this.dataGridViewVars.Name = "dataGridViewVars";
+			this.dataGridViewVars.Size = new System.Drawing.Size(386, 168);
+			this.dataGridViewVars.TabIndex = 2;
+			this.dataGridViewVars.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVars_CellValueChanged);
+			this.dataGridViewVars.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewVars_RowsAdded);
+			this.dataGridViewVars.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridViewVars_RowsRemoved);
 			// 
-			// detailsToolStripMenuItem
+			// ColumnName
 			// 
-			this.detailsToolStripMenuItem.Checked = true;
-			this.detailsToolStripMenuItem.CheckOnClick = true;
-			this.detailsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.detailsToolStripMenuItem.Name = "detailsToolStripMenuItem";
-			this.detailsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-			this.detailsToolStripMenuItem.Text = "Details";
-			this.detailsToolStripMenuItem.ToolTipText = resources.GetString("detailsToolStripMenuItem.ToolTipText");
-			this.detailsToolStripMenuItem.Click += new System.EventHandler(this.detailsToolStripMenuItem_Click);
+			this.ColumnName.HeaderText = "Name";
+			this.ColumnName.Name = "ColumnName";
+			this.ColumnName.ToolTipText = "Name of variable, that takes a part of expression";
 			// 
-			// smalliconsToolStripMenuItem
+			// ColumnValue
 			// 
-			this.smalliconsToolStripMenuItem.CheckOnClick = true;
-			this.smalliconsToolStripMenuItem.Name = "smalliconsToolStripMenuItem";
-			this.smalliconsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-			this.smalliconsToolStripMenuItem.Text = "Small icons";
-			this.smalliconsToolStripMenuItem.ToolTipText = "Each item appears as a small icon with a label to its right.";
-			this.smalliconsToolStripMenuItem.Click += new System.EventHandler(this.smalliconsToolStripMenuItem_Click);
-			// 
-			// listToolStripMenuItem
-			// 
-			this.listToolStripMenuItem.CheckOnClick = true;
-			this.listToolStripMenuItem.Name = "listToolStripMenuItem";
-			this.listToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-			this.listToolStripMenuItem.Text = "List";
-			this.listToolStripMenuItem.ToolTipText = "Each item appears as a small icon with a label to its right.\r\nItems are arranged " +
-					"in columns with no column headers.";
-			this.listToolStripMenuItem.Click += new System.EventHandler(this.listToolStripMenuItem_Click);
-			// 
-			// tileToolStripMenuItem
-			// 
-			this.tileToolStripMenuItem.CheckOnClick = true;
-			this.tileToolStripMenuItem.Name = "tileToolStripMenuItem";
-			this.tileToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-			this.tileToolStripMenuItem.Text = "Tile";
-			this.tileToolStripMenuItem.ToolTipText = resources.GetString("tileToolStripMenuItem.ToolTipText");
-			this.tileToolStripMenuItem.Click += new System.EventHandler(this.tileToolStripMenuItem_Click);
+			this.ColumnValue.HeaderText = "Value";
+			this.ColumnValue.Name = "ColumnValue";
+			this.ColumnValue.ToolTipText = "Value of variable";
+			this.ColumnValue.Width = 243;
 			// 
 			// NetTerm
 			// 
@@ -678,7 +755,7 @@ namespace NetCalculator
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(400, 200);
 			this.ControlBox = false;
-			this.Controls.Add(this.listViewTerm);
+			this.Controls.Add(this.tabControlTerm);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Location = new System.Drawing.Point(0, 44);
@@ -690,22 +767,32 @@ namespace NetCalculator
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Term";
 			this.contextMenuStripTerm.ResumeLayout(false);
+			this.tabControlTerm.ResumeLayout(false);
+			this.tabPageBuiltin.ResumeLayout(false);
+			this.tabPageVariables.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewVars)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.ColumnHeader columnHeaderName;
-		private System.Windows.Forms.ColumnHeader columnHeaderArgs;
-		private System.Windows.Forms.ColumnHeader columnHeaderComments;
-		private System.Windows.Forms.ColumnHeader columnHeaderSynonym;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStripTerm;
 		private System.Windows.Forms.ToolStripMenuItem detailsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem tileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem smalliconsToolStripMenuItem;
+		private System.Windows.Forms.TabControl tabControlTerm;
+		private System.Windows.Forms.TabPage tabPageBuiltin;
 		public System.Windows.Forms.ListView listViewTerm;
+		private System.Windows.Forms.ColumnHeader columnHeaderName;
+		private System.Windows.Forms.ColumnHeader columnHeaderArgs;
+		private System.Windows.Forms.ColumnHeader columnHeaderComments;
+		private System.Windows.Forms.ColumnHeader columnHeaderSynonym;
+		private System.Windows.Forms.TabPage tabPageVariables;
+		private System.Windows.Forms.DataGridView dataGridViewVars;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColumnValue;
 
 	}
 }

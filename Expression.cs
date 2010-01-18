@@ -18,82 +18,82 @@ namespace Expression
 		public ExpressException(string message, Exception innerException) : base(message, innerException) { }
 	}
 
-	public class Expression
+	public partial class Expression
 	{
-		/// <summary>
-		/// String with expression
-		/// </summary>
-		public string express;
-
 		/// <summary>
 		/// Type of expression lexeme
 		/// </summary>
 		public enum Lexeme {
 			Unknown, End,
 			NumDecimal, NumHexadecimal,
+			Variable,
 			OpComma, OpBoolean, OpRelational, OpBitwise, OpAdditive, OpMultiplicative, OpPower, OpPrefixPostfix, OpBrackets,
 			Term,
 		};
 
+		delegate double Parser(ref int curpos, ref string lexeme, ref Lexeme type);
+
 		/// <summary>
-		/// Terms of any kind
+		/// Pair to represent key and value with full access
 		/// </summary>
-		public struct Builtin
+		/// <typeparam name="T1">Key type</typeparam>
+		/// <typeparam name="T2">Value type</typeparam>
+		public class KeyValuePair<T1, T2>
 		{
-			public Builtin(Lexeme k, string[] t)
+			public KeyValuePair(T1 k, T2 v)
 			{
 				Key = k;
-				Term = t;
+				Value = v;
 			}
 
-			public Lexeme Key;
-			public string[] Term;
+			public T1 Key;
+			public T2 Value;
 		};
 
 		/// <summary>
 		/// Operators buit-in lexemes
 		/// </summary>
-		static public Builtin[] BuiltinOp =
+		static public KeyValuePair<Lexeme, string[]>[] BuiltinOp =
 		{
 			// Comma operators
-			new Builtin(Lexeme.OpComma, new string[] {
+			new KeyValuePair<Lexeme, string[]>(Lexeme.OpComma, new string[] {
 				",",
 				"comma",
 			}),
 			// Boolean operators
-			new Builtin(Lexeme.OpBoolean, new string[] {
+			new KeyValuePair<Lexeme, string[]>(Lexeme.OpBoolean, new string[] {
 				"&&", "||", "@@", "->", "<->",
 				"and", "or", "xor", "imp", "equ",
 			}),
 			// Relational operators
-			new Builtin(Lexeme.OpRelational, new string[] {
+			new KeyValuePair<Lexeme, string[]>(Lexeme.OpRelational, new string[] {
 				"<>",
 				"<=", ">=", "<", ">", "==", "!=",
 			}),
 			// Bitwise operators
-			new Builtin(Lexeme.OpBitwise, new string[] {
+			new KeyValuePair<Lexeme, string[]>(Lexeme.OpBitwise, new string[] {
 				"&", "|", "@",
 			}),
 			// Additive operators
-			new Builtin(Lexeme.OpAdditive, new string[] {
+			new KeyValuePair<Lexeme, string[]>(Lexeme.OpAdditive, new string[] {
 				"+", "-",
 				"plus", "minus",
 			}),
 			// Multiplicative operators
-			new Builtin(Lexeme.OpMultiplicative, new string[] {
+			new KeyValuePair<Lexeme, string[]>(Lexeme.OpMultiplicative, new string[] {
 				"*", "/", "%",
 				"mod",
 			}),
 			// Power operators
-			new Builtin(Lexeme.OpPower, new string[] {
+			new KeyValuePair<Lexeme, string[]>(Lexeme.OpPower, new string[] {
 				"^",
 			}),
 			// Prefix/postfix operators
-			new Builtin(Lexeme.OpPrefixPostfix, new string[] {
+			new KeyValuePair<Lexeme, string[]>(Lexeme.OpPrefixPostfix, new string[] {
 				"!",
 			}),
 			// Brackets operators
-			new Builtin(Lexeme.OpBrackets, new string[] {
+			new KeyValuePair<Lexeme, string[]>(Lexeme.OpBrackets, new string[] {
 				"(", ")",
 				"[", "]",
 				"{", "}"
@@ -134,11 +134,22 @@ namespace Expression
 		};
 
 		/// <summary>
+		/// String with expression
+		/// </summary>
+		public string express;
+
+		/// <summary>
+		/// Set of user defined variables
+		/// </summary>
+		public List<KeyValuePair<string, double>> Variables;
+
+		/// <summary>
 		/// Sets an empty expressions and permits up to 10 listed items
 		/// </summary>
 		public Expression()
 		{
 			express = "";
+			Variables = new List<KeyValuePair<string, double>>();
 		}
 
 		/// <summary>
@@ -148,6 +159,7 @@ namespace Expression
 		public Expression(string str)
 		{
 			express = str;
+			Variables = new List<KeyValuePair<string, double>>();
 		}
 
 		/// <summary>
@@ -550,9 +562,36 @@ namespace Expression
 				case "!":
 					{
 						extractLexem(ref curpos, out lexeme, out type);
-						int n = (int)d;
-						d = 1;
-						for (int i = 1; i <= n; d *= i, i++) { }
+						double n = d;
+						if (d - (int)d == 0)
+						{
+							d = 1;
+							for (int i = 1; i <= n; d *= i, i++) { }
+						}
+						else
+						{
+							double[] num = {
+								1.0, 1.0, 1.0, -139.0,
+								-571.0, 163879.0, 5246819.0, -534703531.0,
+								-4483131259.0, 432261921612371.0, 6232523202521089.0, -25834629665134204969.0,
+								-1579029138854919086429.0, 746590869962651602203151.0, 1511513601028097903631961.0, -8849272268392873147705987190261.0,
+								-142801712490607530608130701097701.0
+							};
+							double[] den = {
+								1.0, 12.0, 288.0, 51840.0,
+								2488320.0, 209018880.0, 75246796800.0, 902961561600.0,
+								86684309913600.0, 514904800886784000.0, 86504006548979712000.0, 13494625021640835072000.0,
+								9716130015581401251840000.0, 116593560186976815022080000.0, 2798245444487443560529920000.0, 299692087104605205332754432000000.0,
+								57540880724084199423888850944000000.0
+							};
+							d = Math.Sqrt(2 * Math.PI * n) * Math.Pow(n / Math.E, n);
+							double s = 0;
+							for (int i = 0; i < 17; i++)
+							{
+								s += num[i]/den[i]*Math.Pow(n, -i);
+							}
+							d *= s;
+						}
 						break;
 					}
 			}
@@ -645,7 +684,7 @@ namespace Expression
 					}
 
 				default:
-					d = expressTerm(ref curpos, ref lexeme, ref type);
+					d = expressLexem(ref curpos, ref lexeme, ref type);
 					if (i < args.Count) args[i] = d;
 					else args.Add(d);
 					i++;
@@ -661,7 +700,7 @@ namespace Expression
 		/// <param name="lexeme">Current processing lexeme</param>
 		/// <param name="type">Type of current processing lexeme</param>
 		/// <returns>Result of calculation</returns>
-		protected double expressTerm(ref int curpos, ref string lexeme, ref Lexeme type)
+		protected double expressLexem(ref int curpos, ref string lexeme, ref Lexeme type)
 		{
 			int curpos0 = curpos;
 			string lexeme0 = lexeme;
@@ -674,8 +713,13 @@ namespace Expression
 				case Lexeme.NumHexadecimal:
 					return ParseHex(lexeme0);
 
+				case Lexeme.Variable:
+					foreach (KeyValuePair<string, double> v in Variables)
+						if (v.Key == lexeme0) return v.Value;
+					throw new ExpressException("Invalid variable", curpos0, lexeme0);
+
 				case Lexeme.Term:
-					return expressBuiltinTerm(lexeme0, ref curpos, ref lexeme, ref type);
+					return expressTerm(lexeme0, ref curpos, ref lexeme, ref type);
 
 				case Lexeme.OpComma:
 					throw new ExpressException("Unexpected comma operator", curpos0, lexeme0);
@@ -712,8 +756,9 @@ namespace Expression
 		/// <param name="lexeme">Current processing lexeme</param>
 		/// <param name="type">Type of current processing lexeme</param>
 		/// <returns>Result of calculation</returns>
-		protected double expressBuiltinTerm(string term, ref int curpos, ref string lexeme, ref Lexeme type)
+		protected double expressTerm(string term, ref int curpos, ref string lexeme, ref Lexeme type)
 		{
+			// Express builtin terms
 			switch (term)
 			{
 				// Constants
@@ -1185,7 +1230,18 @@ namespace Expression
 
 				case "round":
 					{
-						return Math.Round(expressFactor(ref curpos, ref lexeme, ref type), MidpointRounding.AwayFromZero);
+						List<double> args = new List<double>();
+						int n = expressFactor(args, ref curpos, ref lexeme, ref type);
+						if (n < 2) args.Add(0);
+						if (args[1] >= 0)
+						{
+							return Math.Round(args[0], (int)args[1]);
+						}
+						else
+						{
+							double p = Math.Pow(10, -(int)args[1]);
+							return Math.Round(args[0]/p)*p;
+						}
 					}
 
 				case "abs":
@@ -1197,14 +1253,13 @@ namespace Expression
 					{
 						return Math.Sign(expressFactor(ref curpos, ref lexeme, ref type));
 					}
-
-				// Othercase
-
-				default:
-					{
-						throw new ExpressException("Unexpected operator", curpos, lexeme);
-					}
 			}
+
+			// Express variables
+			foreach (KeyValuePair<string, double> v in Variables)
+				if (v.Key == term) return v.Value;
+
+			throw new ExpressException("Unexpected term", curpos, lexeme);
 		}
 
 		/// <summary>
@@ -1229,12 +1284,12 @@ namespace Expression
 			// Extract operator
 			for( int i = 0; i < BuiltinOp.Length; i++ )
 			{
-				for( int j = 0; j < BuiltinOp[i].Term.Length; j++ )
+				for( int j = 0; j < BuiltinOp[i].Value.Length; j++ )
 				{
-					if (String.Compare(express, curpos, BuiltinOp[i].Term[j], 0, BuiltinOp[i].Term[j].Length) == 0)
+					if (String.Compare(express, curpos, BuiltinOp[i].Value[j], 0, BuiltinOp[i].Value[j].Length) == 0)
 					{
-						curpos += BuiltinOp[i].Term[j].Length;
-						lexeme = BuiltinOp[i].Term[j];
+						curpos += BuiltinOp[i].Value[j].Length;
+						lexeme = BuiltinOp[i].Value[j];
 						type = BuiltinOp[i].Key;
 						return;
 					}
@@ -1245,7 +1300,7 @@ namespace Expression
 			for (int i = 0; i < BuiltinTerm.Length; i++)
 			{
 				if (String.Compare(express, curpos, BuiltinTerm[i], 0, BuiltinTerm[i].Length) == 0 &&
-						!(curpos + BuiltinTerm[i].Length < express.Length && isFuncChar(express[curpos + BuiltinTerm[i].Length])))
+						!(curpos + BuiltinTerm[i].Length < express.Length && isAlphaNumericChar(express[curpos + BuiltinTerm[i].Length])))
 				{
 					curpos += BuiltinTerm[i].Length;
 					type = Lexeme.Term;
@@ -1254,12 +1309,25 @@ namespace Expression
 				}
 			}
 
+			// Extract variable
+			foreach (KeyValuePair<string, double> v in Variables)
+			{
+				if (String.Compare(express, curpos, v.Key, 0, v.Key.Length) == 0 &&
+					!(curpos + v.Key.Length < express.Length && isAlphaNumericChar(express[curpos + v.Key.Length])))
+				{
+					curpos += v.Key.Length;
+					type = Lexeme.Variable;
+					lexeme = v.Key;
+					return;
+				}
+			}
+
 			// Extract decimal, hexadecimal or unknown word
 			int start = curpos;
-			bool isfunc = isFuncChar(express[curpos]);
+			bool isfunc = isAlphaChar(express[curpos]);
 			if (isfunc) // extract unknown word
 			{
-				while (curpos < express.Length && isFuncChar(express[curpos])) curpos++;
+				while (curpos < express.Length && isAlphaNumericChar(express[curpos])) curpos++;
 				type = Lexeme.Unknown;
 			}
 			else // extract decimal or hexadecimal
@@ -1329,9 +1397,19 @@ namespace Expression
 		/// </summary>
 		/// <param name="ch">Checked symbol</param>
 		/// <returns>true if it's a function name symbol</returns>
-		static internal bool isFuncChar(char ch)
+		static internal bool isAlphaChar(char ch)
 		{
 			return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || ch == '_';
+		}
+
+		/// <summary>
+		/// Checkup a symbol on a letter set or it's a digit
+		/// </summary>
+		/// <param name="ch">Checked symbol</param>
+		/// <returns>true if it's a function name symbol</returns>
+		static internal bool isAlphaNumericChar(char ch)
+		{
+			return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || ch == '_' || (ch >= '0' && ch <= '9');
 		}
 
 		static internal double ParseHex(string hex)

@@ -32,7 +32,7 @@ namespace NetCalculator
 		/// <summary>
 		/// Expression object representation
 		/// </summary>
-		private Expression.Expression express;
+		public Expression.Expression express;
 
 		/// <summary>
 		/// Font facename for expression and result window
@@ -48,10 +48,11 @@ namespace NetCalculator
 		/// </summary>
 		private float inactiveopacity = 0.75f;
 
-		private Highlight[] syntax = {
-            new Highlight("bracket input", Color.Black, Color.LightGreen, false, false),
-            new Highlight("bracket", Color.DarkSeaGreen, Color.White, false, false)
-        };
+		private Highlight[] syntax =
+		{
+			new Highlight("bracket input", Color.Black, Color.LightGreen, false, false),
+			new Highlight("bracket", Color.DarkSeaGreen, Color.White, false, false)
+		};
 
 		private int prevpos = 0, prevlen = 0, bracket1 = -1, bracket2 = -1;
 		private bool processsel = true;
@@ -97,11 +98,10 @@ namespace NetCalculator
 		{
 			InitializeComponent();
 
-			TermForm = new NetTerm(richExpression);
-
 			express = new Expression.Expression();
 			fontToolStripComboBox.Text = font = "Arial";
 
+			TermForm = new NetTerm(richExpression, express);
 			this.AddOwnedForm(TermForm);
 		}
 
@@ -146,11 +146,11 @@ namespace NetCalculator
 
 			// Show context term in popup TermForm
 			bool popup = false;
-			if (curpos > 0 && curpos - 1 < express.express.Length && Expression.Expression.isFuncChar(express.express[curpos - 1]))
+			if (curpos > 0 && curpos - 1 < express.express.Length && Expression.Expression.isAlphaChar(express.express[curpos - 1]))
 			{
 				int start;
 				for (start = curpos;
-						start > 0 && (Expression.Expression.isFuncChar(express.express[start - 1]) ||
+						start > 0 && (Expression.Expression.isAlphaChar(express.express[start - 1]) ||
 						(express.express[start - 1] >= '0' && express.express[start - 1] <= '9'));
 						start--) ;
 				popup = String.Compare(express.express, start, "0x", 0, 2, true) != 0;
@@ -167,7 +167,7 @@ namespace NetCalculator
 						this.Activate();
 					}
 					int termbegin;
-					for (termbegin = curpos - 1; termbegin >= 0 && Expression.Expression.isFuncChar(express.express[termbegin]); termbegin--) ;
+					for (termbegin = curpos - 1; termbegin >= 0 && Expression.Expression.isAlphaChar(express.express[termbegin]); termbegin--) ;
 					TermForm.SelectTerm(express.express.Substring(termbegin + 1, curpos - 1 - termbegin));
 				}
 			}

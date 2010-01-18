@@ -469,6 +469,7 @@ namespace NetCalculator
 					this.Opacity = 0.5;
 					this.Text = "Calculator#";
 					this.TopMost = true;
+					this.TransparencyKey = System.Drawing.SystemColors.Window;
 					this.Deactivate += new System.EventHandler(this.NetCalculator_Deactivate);
 					this.Activated += new System.EventHandler(this.NetCalculator_Activated);
 					this.Move += new System.EventHandler(this.NetCalculator_Move);
