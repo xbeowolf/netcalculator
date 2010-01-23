@@ -27,6 +27,25 @@ namespace NetCalculator
 			InitializeComponent();
 			rich = r;
 			express = e;
+
+			// Show given variables
+			foreach (Expression.KeyValuePair<string, double> kvp in express.Variables)
+			{
+				string[][] row = { new string[] { kvp.Key, kvp.Value.ToString() } };
+				dataGridViewVars.Rows.Add(row);
+			}
+
+			// Add some sample rows
+			string[][] rows = {
+				new string[] { "c", "299792458" },
+				new string[] { "Gconst", "6.67428e-11" },
+				new string[] { "phi", "(1 + sqrt 5) / 2" },
+			};
+			foreach (string[] row in rows)
+			{
+				express.Variables.Add(new Expression.KeyValuePair<string, double>(row[0], express.Evaluate(row[1])));
+				dataGridViewVars.Rows.Add(row);
+			}
 		}
 
 		public bool SelectTerm(string term)
@@ -99,23 +118,67 @@ namespace NetCalculator
 
 		private void dataGridViewVars_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
 		{
-			for (int i = e.RowCount; i > 0; i--)
-				express.Variables.Insert(e.RowIndex - 1, new Expression.Expression.KeyValuePair<string, double>("", 0));
 		}
 
 		private void dataGridViewVars_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
 		{
-			for (int i = e.RowCount; i > 0; i--)
+			for (int i = 0; i < e.RowCount; i++)
 				express.Variables.RemoveAt(e.RowIndex);
 		}
 
-		private void dataGridViewVars_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		private void dataGridViewVars_UserAddedRow(object sender, DataGridViewRowEventArgs e)
 		{
-			if (e.RowIndex < 0) return;
-			if (e.ColumnIndex == 0)
-				express.Variables[e.RowIndex].Key = dataGridViewVars[0, e.RowIndex].Value.ToString();
-			else
-				express.Variables[e.RowIndex].Value = Convert.ToDouble(dataGridViewVars[1, e.RowIndex].Value.ToString().Replace('.', ','));
+			express.Variables.Add(new Expression.KeyValuePair<string, double>(
+				e.Row.Cells[0].Value != null ? e.Row.Cells[0].Value.ToString() : "",
+				express.Evaluate(e.Row.Cells[1].Value != null ? e.Row.Cells[1].Value.ToString() : "0")));
+		}
+
+		private void dataGridViewVars_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+		{
+		}
+
+		private void dataGridViewVars_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+		{
+			// Do not check new line content
+			if (e.RowIndex == dataGridViewVars.NewRowIndex) return;
+
+			// Check table entries
+			string content = e.FormattedValue.ToString();
+			if (e.ColumnIndex == 0) //check identifier name
+			{
+				if (content.Length > 0 && Expression.Expression.isAlphaChar(content[0]))
+				{
+					int i;
+					for (i = 1; i < content.Length && Expression.Expression.isAlphaNumericChar(content[i]); i++)
+					{
+					}
+					e.Cancel = i < content.Length;
+				}
+				else e.Cancel = true;
+				if (e.Cancel)
+				{
+					termErrorProvider.SetError(dataGridViewVars, "Invalid identifier name");
+				}
+				else
+				{
+					express.Variables[e.RowIndex].Key = content;
+					termErrorProvider.SetError(dataGridViewVars, "");
+				}
+			}
+			else // check expression
+			{
+				try
+				{
+					express.Variables[e.RowIndex].Value = express.Evaluate(content);
+					termErrorProvider.SetError(dataGridViewVars, "");
+					e.Cancel = false;
+				}
+				catch (Exception except)
+				{
+					termErrorProvider.SetError(dataGridViewVars, except.Message);
+					e.Cancel = true;
+				}
+			}
 		}
 	}
 }

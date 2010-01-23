@@ -51,247 +51,259 @@ namespace NetCalculator
 			System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "pi", System.Drawing.Color.Navy, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, ""),
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "pi = 3,14159265358979323846"),
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "pi = 3,141 592 653 589 793 238 462 643 383 279 502 884 197 169 399 375"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "M_PI", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
 			System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "e", System.Drawing.Color.Navy, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, ""),
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "e = 2,71828182845904523536"),
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "e = 2.71828182845904523536028747135266249775724709369995957496696762772407663"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "M_E", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
 			System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "C", System.Drawing.Color.Navy, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "gamma", System.Drawing.Color.Navy, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, ""),
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "C = 0,5772156649015328606065120900824024310422"),
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "M_C", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "gamma = 0.57721 56649 01532 86060 65120 90082 40243 10421 59335 93992"),
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "EM", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
 			System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
             "g",
             "",
             "g = 9.80665"}, -1, System.Drawing.Color.Navy, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
 			System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            "mu0",
+            "",
+            "mu0 = 1.2566370614e-6"}, -1, System.Drawing.Color.Navy, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
+			System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            "hbar",
+            "",
+            "h-bar = 1,054 571 628(53)e-34"}, -1, System.Drawing.Color.Navy, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
+			System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            "NA",
+            "",
+            "NA = 6,022 141 79(30)e23"}, -1, System.Drawing.Color.Navy, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
+			System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
             "KB",
             "",
             "KB = 1024"}, -1, System.Drawing.Color.Navy, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
             "MB",
             "",
             "MB = 1024*1024"}, -1, System.Drawing.Color.Navy, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
             "GB",
             "",
             "GB = 1024*1024*1024"}, -1, System.Drawing.Color.Navy, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
             "sin",
             "sin(angel)",
             "sin*sin + cos*cos = 1"}, -1, System.Drawing.Color.DarkGreen, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
             "cos",
             "cos(angel)",
             "sin*sin + cos*cos = 1"}, -1, System.Drawing.Color.DarkGreen, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "tg", System.Drawing.Color.DarkGreen, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "tg(angel)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "tg = sin/cos = 1/ctg"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "tan", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "ctg", System.Drawing.Color.DarkGreen, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "ctg(angel)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "ctg = cos/sin = 1/tg"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "cot", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
             "sec",
             "sec(angel)",
             "sec = 1/cos"}, -1, System.Drawing.Color.DarkGreen, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "cosec", System.Drawing.Color.DarkGreen, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "cosec(angel)", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "cosec = 1/sin", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "csc", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arcsin", System.Drawing.Color.DarkGreen, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arcsin(x)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "y = Arcsin(x), if x = sin(y)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Asin", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arccos", System.Drawing.Color.DarkGreen, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arccos(x)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "y = Arccos(x), if x = cos(y)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Acos", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arctg", System.Drawing.Color.DarkGreen, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arctg(x)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "y = Arctg(x), if x = tg(y)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Atan", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arcctg", System.Drawing.Color.DarkGreen, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arcctg(x)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "y = Arcctg(x), if x = ctg(y)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Acot", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arcsec", System.Drawing.Color.DarkGreen, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arcsec(x)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "y = Arcsec(x), if x = sec(y)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Asec", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arccosec", System.Drawing.Color.DarkGreen, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Arccosec(x)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "y = Arccosec(x), if x = cosec(y)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Acsc", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem(new string[] {
             "sqrt",
             "sqrt(x), x >= 0",
             "x = sqrt*sqrt"}, -1, System.Drawing.Color.Purple, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem(new string[] {
             "root",
             "root(x, p = 2), x >= 0",
             "y = root(x, p), if x = y^p"}, -1, System.Drawing.Color.Purple, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "pow", System.Drawing.Color.Purple, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "pow(x, p = 2)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "y = pow(x, p) = x*x*...*x p times"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "operator ^", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem(new string[] {
             "ln",
             "ln(x), x > 0",
             "y = ln(x), if e^y = x"}, -1, System.Drawing.Color.Purple, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem(new string[] {
             "lg",
             "lg(x), x > 0",
             "y = lg(x), if 10^y = x"}, -1, System.Drawing.Color.Purple, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem(new string[] {
             "log",
             "log(x, m = e), x > 0",
             "y = log(x, m), if m^y = x"}, -1, System.Drawing.Color.Purple, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem31 = new System.Windows.Forms.ListViewItem(new string[] {
             "exp",
             "exp(x)",
             "y = exp(x), if e^x = y"}, -1, System.Drawing.Color.Purple, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem32 = new System.Windows.Forms.ListViewItem(new string[] {
             "sh",
             "sh(x)",
             "sh(x) = (exp(x) - exp(-x))/2"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem(new string[] {
             "ch",
             "ch(x)",
             "ch(x) = (exp(x) + exp(-x))/2"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem31 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem(new string[] {
             "th",
             "th(x)",
             "th(x) = (exp(x) - exp(-x))/(exp(x) + exp(-x))"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem32 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem35 = new System.Windows.Forms.ListViewItem(new string[] {
             "cth",
             "cth(x), x != 0",
             "cth(x) = (exp(x) + exp(-x))/(exp(x)-exp(-x))"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem36 = new System.Windows.Forms.ListViewItem(new string[] {
             "sch",
             "sch(x)",
             "sch(x) = 2/(exp(x) + exp(-x))"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem(new string[] {
             "csch",
             "csch(x), x != 0",
             "csch(x) = 2/(exp(x) - exp(-x))"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem35 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem(new string[] {
             "Arsh",
             "Arsh(x)",
             "y = Arsh(x), if x = sh(y)"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem36 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem39 = new System.Windows.Forms.ListViewItem(new string[] {
             "Arch",
             "Arch(x)",
             "y = Arch(x), if x = ch(y)"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem40 = new System.Windows.Forms.ListViewItem(new string[] {
             "Arth",
             "Arth(x)",
             "y = Arth(x), if x = th(y)"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem41 = new System.Windows.Forms.ListViewItem(new string[] {
             "Arcth",
             "Arcth(x)",
             "y = Arcth(x), if x = cth(y)"}, -1, System.Drawing.Color.MediumVioletRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem39 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem42 = new System.Windows.Forms.ListViewItem(new string[] {
             "Si",
             "Si(x)",
             "http://en.wikipedia.org/wiki/Trigonometric_integral#Sine_integral"}, -1, System.Drawing.Color.Crimson, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem40 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem43 = new System.Windows.Forms.ListViewItem(new string[] {
             "Ci",
             "Ci(x)",
             "http://en.wikipedia.org/wiki/Trigonometric_integral#Sine_integral"}, -1, System.Drawing.Color.Crimson, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem41 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem44 = new System.Windows.Forms.ListViewItem(new string[] {
             "Ei",
             "Ei(x)",
             "http://en.wikipedia.org/wiki/Exponential_integral"}, -1, System.Drawing.Color.Crimson, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem42 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem45 = new System.Windows.Forms.ListViewItem(new string[] {
             "li",
             "li(x)",
             "http://en.wikipedia.org/wiki/Logarithmic_integral"}, -1, System.Drawing.Color.Crimson, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem43 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem46 = new System.Windows.Forms.ListViewItem(new string[] {
             "hypot",
             "hypot(x, ...)",
             "hypot(x, y, z) = sqrt(x*x + y*y + z*z)"}, -1, System.Drawing.Color.DarkGoldenrod, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-			System.Windows.Forms.ListViewItem listViewItem44 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem47 = new System.Windows.Forms.ListViewItem(new string[] {
             "Amean",
             "Amean(x, ...)",
             "Amean(x1, x2, ... xn) = (x1 + x2 + ... + xn) / n"}, -1, System.Drawing.Color.DarkViolet, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem45 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem48 = new System.Windows.Forms.ListViewItem(new string[] {
             "Gmean",
             "Gmean(x, ...)",
             "Amean(x1, x2, ... xn) = root n (x1 * x2 * ... * xn)"}, -1, System.Drawing.Color.DarkViolet, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem46 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem49 = new System.Windows.Forms.ListViewItem(new string[] {
             "Hmean",
             "Hmean(x, ...), xi > 0",
             "Hmean(x1, x2, ... xn) = n / (1/x1 + 1/x2 + ... + 1/xn)"}, -1, System.Drawing.Color.DarkViolet, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem47 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem50 = new System.Windows.Forms.ListViewItem(new string[] {
             "Rmean",
             "Rmean(x, ...)",
             "Rmean(x1, x2, ... xn) = root((x1*x1 + x2*x2 + ... + xn*xn) / n)"}, -1, System.Drawing.Color.DarkViolet, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem48 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem51 = new System.Windows.Forms.ListViewItem(new string[] {
             "variance",
             "variance(x, ...)",
             "http://en.wikipedia.org/wiki/Variance"}, -1, System.Drawing.Color.DarkViolet, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem49 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem52 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "deviation", System.Drawing.Color.DarkViolet, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "deviation(x, ...)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "deviation = sqrt(variance)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "sigma", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem50 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem53 = new System.Windows.Forms.ListViewItem(new string[] {
             "min",
             "min(x, y, ...)",
             "minimal of x, y, etc."}, -1, System.Drawing.Color.Teal, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem51 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem54 = new System.Windows.Forms.ListViewItem(new string[] {
             "max",
             "max(x, y, ...)",
             "maximal of x, y, etc."}, -1, System.Drawing.Color.Teal, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem52 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem55 = new System.Windows.Forms.ListViewItem(new string[] {
             "doz",
             "doz(x, y)",
             "doz(x, y) = x >= y ? x - y : 0"}, -1, System.Drawing.Color.Teal, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem53 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem56 = new System.Windows.Forms.ListViewItem(new string[] {
             "rad",
             "rad(x)",
             "rad(x) = x*pi/180"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem54 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem57 = new System.Windows.Forms.ListViewItem(new string[] {
             "deg",
             "deg(x)",
             "deg(x) = x/pi*180"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem55 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+			System.Windows.Forms.ListViewItem listViewItem58 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "int", System.Drawing.Color.DarkRed, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold)),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "int(x)"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "integer part of float"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "trunc", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Info, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold))}, -1);
-			System.Windows.Forms.ListViewItem listViewItem56 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem59 = new System.Windows.Forms.ListViewItem(new string[] {
             "ceil",
             "ceil(x)",
             "returns the smallest integer greater than or equal to x"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem57 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem60 = new System.Windows.Forms.ListViewItem(new string[] {
             "floor",
             "floor(x)",
             "returns the largest integer less than or equal to x"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem58 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem61 = new System.Windows.Forms.ListViewItem(new string[] {
             "round",
             "round(x, p = 0)",
             "rounds a value to the nearest integer with specified precision"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem59 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem62 = new System.Windows.Forms.ListViewItem(new string[] {
             "abs",
             "abs(x)",
             "absolute value of x"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
-			System.Windows.Forms.ListViewItem listViewItem60 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem63 = new System.Windows.Forms.ListViewItem(new string[] {
             "sign",
             "sign(x)",
             "value indicating the sign of x"}, -1, System.Drawing.Color.DarkRed, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold));
@@ -302,20 +314,22 @@ namespace NetCalculator
 			this.tileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControlTerm = new System.Windows.Forms.TabControl();
 			this.tabPageBuiltin = new System.Windows.Forms.TabPage();
-			this.tabPageVariables = new System.Windows.Forms.TabPage();
 			this.listViewTerm = new System.Windows.Forms.ListView();
 			this.columnHeaderName = new System.Windows.Forms.ColumnHeader();
 			this.columnHeaderArgs = new System.Windows.Forms.ColumnHeader();
 			this.columnHeaderComments = new System.Windows.Forms.ColumnHeader();
 			this.columnHeaderSynonym = new System.Windows.Forms.ColumnHeader();
+			this.tabPageVariables = new System.Windows.Forms.TabPage();
 			this.dataGridViewVars = new System.Windows.Forms.DataGridView();
 			this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColumnValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.termErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			this.contextMenuStripTerm.SuspendLayout();
 			this.tabControlTerm.SuspendLayout();
 			this.tabPageBuiltin.SuspendLayout();
 			this.tabPageVariables.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewVars)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.termErrorProvider)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// contextMenuStripTerm
@@ -391,18 +405,6 @@ namespace NetCalculator
 			this.tabPageBuiltin.ToolTipText = "Builtin constants and functions";
 			this.tabPageBuiltin.UseVisualStyleBackColor = true;
 			// 
-			// tabPageVariables
-			// 
-			this.tabPageVariables.Controls.Add(this.dataGridViewVars);
-			this.tabPageVariables.Location = new System.Drawing.Point(4, 22);
-			this.tabPageVariables.Name = "tabPageVariables";
-			this.tabPageVariables.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageVariables.Size = new System.Drawing.Size(392, 174);
-			this.tabPageVariables.TabIndex = 1;
-			this.tabPageVariables.Text = "Variables";
-			this.tabPageVariables.ToolTipText = "User defined variables";
-			this.tabPageVariables.UseVisualStyleBackColor = true;
-			// 
 			// listViewTerm
 			// 
 			this.listViewTerm.Activation = System.Windows.Forms.ItemActivation.OneClick;
@@ -462,173 +464,182 @@ namespace NetCalculator
 			listViewItem4.ToolTipText = "base of natural logarithm";
 			listViewItem4.UseItemStyleForSubItems = false;
 			listViewItem5.Group = listViewGroup1;
-			listViewItem5.ToolTipText = "Eyler constant";
+			listViewItem5.ToolTipText = "Euler–Mascheroni constant";
 			listViewItem5.UseItemStyleForSubItems = false;
 			listViewItem6.Group = listViewGroup1;
 			listViewItem6.ToolTipText = "gravity constant";
 			listViewItem6.UseItemStyleForSubItems = false;
 			listViewItem7.Group = listViewGroup1;
-			listViewItem7.ToolTipText = "kilobyte";
+			listViewItem7.ToolTipText = "vacuum permeability";
 			listViewItem7.UseItemStyleForSubItems = false;
 			listViewItem8.Group = listViewGroup1;
-			listViewItem8.ToolTipText = "megabyte";
+			listViewItem8.ToolTipText = "reduced Planck constant (Dirac constant)";
 			listViewItem8.UseItemStyleForSubItems = false;
 			listViewItem9.Group = listViewGroup1;
-			listViewItem9.ToolTipText = "gigabyte";
+			listViewItem9.ToolTipText = "Avogadro constant";
 			listViewItem9.UseItemStyleForSubItems = false;
-			listViewItem10.Group = listViewGroup2;
-			listViewItem10.ToolTipText = "sinus";
+			listViewItem10.Group = listViewGroup1;
+			listViewItem10.ToolTipText = "kilobyte";
 			listViewItem10.UseItemStyleForSubItems = false;
-			listViewItem11.Group = listViewGroup2;
-			listViewItem11.ToolTipText = "cosinus";
+			listViewItem11.Group = listViewGroup1;
+			listViewItem11.ToolTipText = "megabyte";
 			listViewItem11.UseItemStyleForSubItems = false;
-			listViewItem12.Group = listViewGroup2;
-			listViewItem12.ToolTipText = "tangens";
+			listViewItem12.Group = listViewGroup1;
+			listViewItem12.ToolTipText = "gigabyte";
 			listViewItem12.UseItemStyleForSubItems = false;
 			listViewItem13.Group = listViewGroup2;
-			listViewItem13.ToolTipText = "cotangens";
+			listViewItem13.ToolTipText = "sinus";
 			listViewItem13.UseItemStyleForSubItems = false;
 			listViewItem14.Group = listViewGroup2;
-			listViewItem14.ToolTipText = "secans";
+			listViewItem14.ToolTipText = "cosinus";
 			listViewItem14.UseItemStyleForSubItems = false;
 			listViewItem15.Group = listViewGroup2;
-			listViewItem15.ToolTipText = "cosecans";
+			listViewItem15.ToolTipText = "tangens";
 			listViewItem15.UseItemStyleForSubItems = false;
 			listViewItem16.Group = listViewGroup2;
-			listViewItem16.ToolTipText = "arcsinus";
+			listViewItem16.ToolTipText = "cotangens";
 			listViewItem16.UseItemStyleForSubItems = false;
 			listViewItem17.Group = listViewGroup2;
-			listViewItem17.ToolTipText = "arccosinus";
+			listViewItem17.ToolTipText = "secans";
 			listViewItem17.UseItemStyleForSubItems = false;
 			listViewItem18.Group = listViewGroup2;
-			listViewItem18.ToolTipText = "arctangens";
+			listViewItem18.ToolTipText = "cosecans";
 			listViewItem18.UseItemStyleForSubItems = false;
 			listViewItem19.Group = listViewGroup2;
-			listViewItem19.ToolTipText = "arccotangens";
+			listViewItem19.ToolTipText = "arcsinus";
 			listViewItem19.UseItemStyleForSubItems = false;
 			listViewItem20.Group = listViewGroup2;
-			listViewItem20.ToolTipText = "arcsecans";
+			listViewItem20.ToolTipText = "arccosinus";
 			listViewItem20.UseItemStyleForSubItems = false;
 			listViewItem21.Group = listViewGroup2;
-			listViewItem21.ToolTipText = "arccosecans";
+			listViewItem21.ToolTipText = "arctangens";
 			listViewItem21.UseItemStyleForSubItems = false;
-			listViewItem22.Group = listViewGroup3;
-			listViewItem22.ToolTipText = "square root";
+			listViewItem22.Group = listViewGroup2;
+			listViewItem22.ToolTipText = "arccotangens";
 			listViewItem22.UseItemStyleForSubItems = false;
-			listViewItem23.Group = listViewGroup3;
-			listViewItem23.ToolTipText = "root of given degree";
+			listViewItem23.Group = listViewGroup2;
+			listViewItem23.ToolTipText = "arcsecans";
 			listViewItem23.UseItemStyleForSubItems = false;
-			listViewItem24.Group = listViewGroup3;
-			listViewItem24.ToolTipText = "arithmetic power";
+			listViewItem24.Group = listViewGroup2;
+			listViewItem24.ToolTipText = "arccosecans";
 			listViewItem24.UseItemStyleForSubItems = false;
 			listViewItem25.Group = listViewGroup3;
-			listViewItem25.ToolTipText = "natural logarithm";
+			listViewItem25.ToolTipText = "square root";
 			listViewItem25.UseItemStyleForSubItems = false;
 			listViewItem26.Group = listViewGroup3;
-			listViewItem26.ToolTipText = "decimal logarithm";
+			listViewItem26.ToolTipText = "root of given degree";
 			listViewItem26.UseItemStyleForSubItems = false;
 			listViewItem27.Group = listViewGroup3;
-			listViewItem27.ToolTipText = "logarithm of given mantiss";
+			listViewItem27.ToolTipText = "arithmetic power";
 			listViewItem27.UseItemStyleForSubItems = false;
 			listViewItem28.Group = listViewGroup3;
-			listViewItem28.ToolTipText = "exponent";
+			listViewItem28.ToolTipText = "natural logarithm";
 			listViewItem28.UseItemStyleForSubItems = false;
-			listViewItem29.Group = listViewGroup4;
-			listViewItem29.ToolTipText = "hyperbolic sinus";
+			listViewItem29.Group = listViewGroup3;
+			listViewItem29.ToolTipText = "decimal logarithm";
 			listViewItem29.UseItemStyleForSubItems = false;
-			listViewItem30.Group = listViewGroup4;
-			listViewItem30.ToolTipText = "hyperbolic cosinus";
+			listViewItem30.Group = listViewGroup3;
+			listViewItem30.ToolTipText = "logarithm of given mantiss";
 			listViewItem30.UseItemStyleForSubItems = false;
-			listViewItem31.Group = listViewGroup4;
-			listViewItem31.ToolTipText = "hyperbolic tangens";
+			listViewItem31.Group = listViewGroup3;
+			listViewItem31.ToolTipText = "exponent";
 			listViewItem31.UseItemStyleForSubItems = false;
 			listViewItem32.Group = listViewGroup4;
-			listViewItem32.ToolTipText = "hyperbolic cotangens";
+			listViewItem32.ToolTipText = "hyperbolic sinus";
 			listViewItem32.UseItemStyleForSubItems = false;
 			listViewItem33.Group = listViewGroup4;
-			listViewItem33.ToolTipText = "hyperbolic secans";
+			listViewItem33.ToolTipText = "hyperbolic cosinus";
 			listViewItem33.UseItemStyleForSubItems = false;
 			listViewItem34.Group = listViewGroup4;
-			listViewItem34.ToolTipText = "hyperbolic cosecans";
+			listViewItem34.ToolTipText = "hyperbolic tangens";
 			listViewItem34.UseItemStyleForSubItems = false;
 			listViewItem35.Group = listViewGroup4;
-			listViewItem35.ToolTipText = "areasinus";
+			listViewItem35.ToolTipText = "hyperbolic cotangens";
 			listViewItem35.UseItemStyleForSubItems = false;
 			listViewItem36.Group = listViewGroup4;
-			listViewItem36.ToolTipText = "areacosinus";
+			listViewItem36.ToolTipText = "hyperbolic secans";
 			listViewItem36.UseItemStyleForSubItems = false;
 			listViewItem37.Group = listViewGroup4;
-			listViewItem37.ToolTipText = "areatangens";
+			listViewItem37.ToolTipText = "hyperbolic cosecans";
 			listViewItem37.UseItemStyleForSubItems = false;
 			listViewItem38.Group = listViewGroup4;
-			listViewItem38.ToolTipText = "areacotangens";
+			listViewItem38.ToolTipText = "areasinus";
 			listViewItem38.UseItemStyleForSubItems = false;
-			listViewItem39.Group = listViewGroup5;
-			listViewItem39.ToolTipText = "Integral sine";
+			listViewItem39.Group = listViewGroup4;
+			listViewItem39.ToolTipText = "areacosinus";
 			listViewItem39.UseItemStyleForSubItems = false;
-			listViewItem40.Group = listViewGroup5;
-			listViewItem40.ToolTipText = "Integral cosine";
+			listViewItem40.Group = listViewGroup4;
+			listViewItem40.ToolTipText = "areatangens";
 			listViewItem40.UseItemStyleForSubItems = false;
-			listViewItem41.Group = listViewGroup5;
-			listViewItem41.ToolTipText = "Exponential integral function";
+			listViewItem41.Group = listViewGroup4;
+			listViewItem41.ToolTipText = "areacotangens";
 			listViewItem41.UseItemStyleForSubItems = false;
 			listViewItem42.Group = listViewGroup5;
-			listViewItem42.ToolTipText = "Integral logarithm";
+			listViewItem42.ToolTipText = "Integral sine";
 			listViewItem42.UseItemStyleForSubItems = false;
-			listViewItem43.Group = listViewGroup7;
-			listViewItem43.ToolTipText = "hypotenuse";
+			listViewItem43.Group = listViewGroup5;
+			listViewItem43.ToolTipText = "Integral cosine";
 			listViewItem43.UseItemStyleForSubItems = false;
-			listViewItem44.Group = listViewGroup8;
-			listViewItem44.ToolTipText = "Arithmetic mean";
+			listViewItem44.Group = listViewGroup5;
+			listViewItem44.ToolTipText = "Exponential integral function";
 			listViewItem44.UseItemStyleForSubItems = false;
-			listViewItem45.Group = listViewGroup8;
-			listViewItem45.ToolTipText = "Geometric mean";
+			listViewItem45.Group = listViewGroup5;
+			listViewItem45.ToolTipText = "Integral logarithm";
 			listViewItem45.UseItemStyleForSubItems = false;
-			listViewItem46.Group = listViewGroup8;
-			listViewItem46.ToolTipText = "Harmonic mean";
+			listViewItem46.Group = listViewGroup7;
+			listViewItem46.ToolTipText = "hypotenuse";
 			listViewItem46.UseItemStyleForSubItems = false;
 			listViewItem47.Group = listViewGroup8;
-			listViewItem47.ToolTipText = "Root mean square";
+			listViewItem47.ToolTipText = "Arithmetic mean";
 			listViewItem47.UseItemStyleForSubItems = false;
 			listViewItem48.Group = listViewGroup8;
-			listViewItem48.ToolTipText = "Variance";
+			listViewItem48.ToolTipText = "Geometric mean";
 			listViewItem48.UseItemStyleForSubItems = false;
 			listViewItem49.Group = listViewGroup8;
-			listViewItem49.ToolTipText = "Standard deviation";
+			listViewItem49.ToolTipText = "Harmonic mean";
 			listViewItem49.UseItemStyleForSubItems = false;
-			listViewItem50.Group = listViewGroup9;
-			listViewItem50.ToolTipText = "minimum";
+			listViewItem50.Group = listViewGroup8;
+			listViewItem50.ToolTipText = "Root mean square";
 			listViewItem50.UseItemStyleForSubItems = false;
-			listViewItem51.Group = listViewGroup9;
-			listViewItem51.ToolTipText = "maximum";
+			listViewItem51.Group = listViewGroup8;
+			listViewItem51.ToolTipText = "Variance";
 			listViewItem51.UseItemStyleForSubItems = false;
-			listViewItem52.Group = listViewGroup9;
-			listViewItem52.ToolTipText = "difference or zero";
+			listViewItem52.Group = listViewGroup8;
+			listViewItem52.ToolTipText = "Standard deviation";
 			listViewItem52.UseItemStyleForSubItems = false;
-			listViewItem53.Group = listViewGroup10;
-			listViewItem53.ToolTipText = "radian";
+			listViewItem53.Group = listViewGroup9;
+			listViewItem53.ToolTipText = "minimum";
 			listViewItem53.UseItemStyleForSubItems = false;
-			listViewItem54.Group = listViewGroup10;
-			listViewItem54.ToolTipText = "degree";
+			listViewItem54.Group = listViewGroup9;
+			listViewItem54.ToolTipText = "maximum";
 			listViewItem54.UseItemStyleForSubItems = false;
-			listViewItem55.Group = listViewGroup10;
-			listViewItem55.ToolTipText = "integer";
+			listViewItem55.Group = listViewGroup9;
+			listViewItem55.ToolTipText = "difference or zero";
 			listViewItem55.UseItemStyleForSubItems = false;
 			listViewItem56.Group = listViewGroup10;
-			listViewItem56.ToolTipText = "ceiling";
+			listViewItem56.ToolTipText = "radian";
 			listViewItem56.UseItemStyleForSubItems = false;
 			listViewItem57.Group = listViewGroup10;
-			listViewItem57.ToolTipText = "floor";
+			listViewItem57.ToolTipText = "degree";
 			listViewItem57.UseItemStyleForSubItems = false;
 			listViewItem58.Group = listViewGroup10;
-			listViewItem58.ToolTipText = "rounded integer";
+			listViewItem58.ToolTipText = "integer";
 			listViewItem58.UseItemStyleForSubItems = false;
 			listViewItem59.Group = listViewGroup10;
-			listViewItem59.ToolTipText = "absolute value";
+			listViewItem59.ToolTipText = "ceiling";
 			listViewItem59.UseItemStyleForSubItems = false;
 			listViewItem60.Group = listViewGroup10;
-			listViewItem60.ToolTipText = "sign indicator";
+			listViewItem60.ToolTipText = "floor";
 			listViewItem60.UseItemStyleForSubItems = false;
+			listViewItem61.Group = listViewGroup10;
+			listViewItem61.ToolTipText = "rounded integer";
+			listViewItem61.UseItemStyleForSubItems = false;
+			listViewItem62.Group = listViewGroup10;
+			listViewItem62.ToolTipText = "absolute value";
+			listViewItem62.UseItemStyleForSubItems = false;
+			listViewItem63.Group = listViewGroup10;
+			listViewItem63.ToolTipText = "sign indicator";
+			listViewItem63.UseItemStyleForSubItems = false;
 			this.listViewTerm.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
@@ -689,7 +700,10 @@ namespace NetCalculator
             listViewItem57,
             listViewItem58,
             listViewItem59,
-            listViewItem60});
+            listViewItem60,
+            listViewItem61,
+            listViewItem62,
+            listViewItem63});
 			this.listViewTerm.Location = new System.Drawing.Point(3, 3);
 			this.listViewTerm.MultiSelect = false;
 			this.listViewTerm.Name = "listViewTerm";
@@ -719,6 +733,18 @@ namespace NetCalculator
 			// 
 			this.columnHeaderSynonym.Text = "Synonym";
 			// 
+			// tabPageVariables
+			// 
+			this.tabPageVariables.Controls.Add(this.dataGridViewVars);
+			this.tabPageVariables.Location = new System.Drawing.Point(4, 22);
+			this.tabPageVariables.Name = "tabPageVariables";
+			this.tabPageVariables.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageVariables.Size = new System.Drawing.Size(392, 174);
+			this.tabPageVariables.TabIndex = 1;
+			this.tabPageVariables.Text = "Variables";
+			this.tabPageVariables.ToolTipText = "User defined variables";
+			this.tabPageVariables.UseVisualStyleBackColor = true;
+			// 
 			// dataGridViewVars
 			// 
 			this.dataGridViewVars.AllowUserToOrderColumns = true;
@@ -728,11 +754,14 @@ namespace NetCalculator
             this.ColumnName,
             this.ColumnValue});
 			this.dataGridViewVars.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.termErrorProvider.SetIconPadding(this.dataGridViewVars, -16);
 			this.dataGridViewVars.Location = new System.Drawing.Point(3, 3);
 			this.dataGridViewVars.Name = "dataGridViewVars";
 			this.dataGridViewVars.Size = new System.Drawing.Size(386, 168);
 			this.dataGridViewVars.TabIndex = 2;
-			this.dataGridViewVars.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVars_CellValueChanged);
+			this.dataGridViewVars.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewVars_UserAddedRow);
+			this.dataGridViewVars.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewVars_UserDeletedRow);
+			this.dataGridViewVars.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewVars_CellValidating);
 			this.dataGridViewVars.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewVars_RowsAdded);
 			this.dataGridViewVars.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridViewVars_RowsRemoved);
 			// 
@@ -748,6 +777,10 @@ namespace NetCalculator
 			this.ColumnValue.Name = "ColumnValue";
 			this.ColumnValue.ToolTipText = "Value of variable";
 			this.ColumnValue.Width = 243;
+			// 
+			// termErrorProvider
+			// 
+			this.termErrorProvider.ContainerControl = this;
 			// 
 			// NetTerm
 			// 
@@ -771,6 +804,7 @@ namespace NetCalculator
 			this.tabPageBuiltin.ResumeLayout(false);
 			this.tabPageVariables.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewVars)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.termErrorProvider)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -793,6 +827,6 @@ namespace NetCalculator
 		private System.Windows.Forms.DataGridView dataGridViewVars;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColumnValue;
-
+		private System.Windows.Forms.ErrorProvider termErrorProvider;
 	}
 }

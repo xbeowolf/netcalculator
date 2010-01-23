@@ -69,10 +69,11 @@ namespace NetCalculator
 
 		private void EvaluateContent(bool show, bool sel)
 		{
-			express.express = richExpression.Text;
 			try
 			{
-				string res = express.Evaluate(hexadecimalToolStripMenuItem.Checked ? 16 : 10);
+				string res = express.Evaluate(
+					richExpression.Text,
+					hexadecimalToolStripMenuItem.Checked ? 16 : 10);
 				if (show) richResult.Text = res;
 				if (netcalcErrorProvider.GetError(richExpression).Length > 0)
 					netcalcErrorProvider.SetError(richExpression, "");
@@ -108,18 +109,16 @@ namespace NetCalculator
 		private void EvTextChangedExpress(object sender, EventArgs e)
 		{
 			//int start, end;
+			string content = richExpression.Text;
 
 			int curpos = richExpression.SelectionStart, cursel = richExpression.SelectionLength, curlen = richExpression.TextLength;
 
 			if (curpos < bracket1) bracket1++;
 			if (curpos < bracket2) bracket2++;
 
-			express.express = richExpression.Text;
-
-
 			prevpos = curpos; prevlen = curlen;
 
-			if (express.express.Length == 0)
+			if (content.Length == 0)
 			{
 				netcalcErrorProvider.SetError(richExpression, "");
 				return;
@@ -142,18 +141,18 @@ namespace NetCalculator
 
 			int curpos = richExpression.SelectionStart, cursel = richExpression.SelectionLength, curlen = richExpression.TextLength;
 
-			express.express = richExpression.Text;
+			string content = richExpression.Text;
 
 			// Show context term in popup TermForm
 			bool popup = false;
-			if (curpos > 0 && curpos - 1 < express.express.Length && Expression.Expression.isAlphaChar(express.express[curpos - 1]))
+			if (curpos > 0 && curpos - 1 < content.Length && Expression.Expression.isAlphaChar(content[curpos - 1]))
 			{
 				int start;
 				for (start = curpos;
-						start > 0 && (Expression.Expression.isAlphaChar(express.express[start - 1]) ||
-						(express.express[start - 1] >= '0' && express.express[start - 1] <= '9'));
+						start > 0 && (Expression.Expression.isAlphaChar(content[start - 1]) ||
+						(content[start - 1] >= '0' && content[start - 1] <= '9'));
 						start--) ;
-				popup = String.Compare(express.express, start, "0x", 0, 2, true) != 0;
+				popup = String.Compare(content, start, "0x", 0, 2, true) != 0;
 			}
 			if (popup)
 			{
@@ -167,8 +166,8 @@ namespace NetCalculator
 						this.Activate();
 					}
 					int termbegin;
-					for (termbegin = curpos - 1; termbegin >= 0 && Expression.Expression.isAlphaChar(express.express[termbegin]); termbegin--) ;
-					TermForm.SelectTerm(express.express.Substring(termbegin + 1, curpos - 1 - termbegin));
+					for (termbegin = curpos - 1; termbegin >= 0 && Expression.Expression.isAlphaChar(content[termbegin]); termbegin--) ;
+					TermForm.SelectTerm(content.Substring(termbegin + 1, curpos - 1 - termbegin));
 				}
 			}
 			else

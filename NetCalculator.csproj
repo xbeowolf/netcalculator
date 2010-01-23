@@ -30,6 +30,8 @@
     <CreateWebPageOnPublish>false</CreateWebPageOnPublish>
     <ApplicationVersion>1.2.1.0</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,7 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Expression.cs" />
+    <Compile Include="ExpressionBuiltin.cs" />
+    <Compile Include="ExpressionEngine.cs" />
     <Compile Include="NetTerm.cs">
       <SubType>Form</SubType>
     </Compile>
