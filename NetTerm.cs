@@ -22,6 +22,72 @@ namespace NetCalculator
 		/// </summary>
 		private Expression.Expression express;
 
+		/// <summary>
+		/// Compose given array of arguments names to single string of arguments
+		/// enumerated by comma.
+		/// </summary>
+		/// <param name="func">Given function array</param>
+		/// <returns></returns>
+		private string ComposeArgs(ref string[] func)
+		{
+			string args = "";
+			for (int i = 1; i < func.Length; i++)
+			{
+				args += func[i];
+				if (i < func.Length - 1) args += ", ";
+			}
+			return args;
+		}
+
+		/// <summary>
+		/// Decompose single string with enumerated by comma arguments to array of
+		/// arguments names.
+		/// </summary>
+		/// <param name="definition">Body of function, it's copy to 1st element of array.</param>
+		/// <param name="args">Single string with enumerated arguments.</param>
+		/// <param name="func">Result array.</param>
+		private void DecomposeArgs(string definition, string args, out string[] func)
+		{
+			// Make a list of arguments
+			List<string> list = new List<string>();
+			int curpos = 0;
+			Expression.Expression.skipSpace(ref args, ref curpos);
+			while (curpos < args.Length)
+			{
+				if (Expression.Expression.isAlphaChar(args[curpos]))
+				{
+					int i;
+					for (i = curpos + 1; i < args.Length && Expression.Expression.isAlphaNumericChar(args[i]); i++)
+					{
+					}
+					list.Add(args.Substring(curpos, i - curpos));
+					curpos = i;
+				}
+				else throw new ExpressException("Invalid symbol at argument name", curpos, args.Substring(curpos, 1));
+				Expression.Expression.skipSpace(ref args, ref curpos);
+				if (curpos < args.Length && args[curpos] == ',') curpos++;
+				Expression.Expression.skipSpace(ref args, ref curpos);
+			}
+			// Format the result
+			func = new string[1 + list.Count];
+			func[0] = definition;
+			for (int i = 1; i < func.Length; i++)
+				func[i] = list[i - 1];
+		}
+
+		private void checkName(ref string name)
+		{
+			if (name.Length > 0 && Expression.Expression.isAlphaChar(name[0]))
+			{
+				int i;
+				for (i = 1; i < name.Length && Expression.Expression.isAlphaNumericChar(name[i]); i++)
+				{
+				}
+				if (i >= name.Length) return;
+			}
+			throw new Exception("Invalid identifier name");
+		}
+
 		public NetTerm(RichTextBox r, Expression.Expression e)
 		{
 			InitializeComponent();
@@ -34,17 +100,36 @@ namespace NetCalculator
 				string[][] row = { new string[] { kvp.Key, kvp.Value.ToString() } };
 				dataGridViewVars.Rows.Add(row);
 			}
-
 			// Add some sample rows
-			string[][] rows = {
+			string[][] rowsv = {
 				new string[] { "c", "299792458" },
 				new string[] { "Gconst", "6.67428e-11" },
 				new string[] { "phi", "(1 + sqrt 5) / 2" },
 			};
-			foreach (string[] row in rows)
+			foreach (string[] row in rowsv)
 			{
 				express.Variables.Add(new Expression.KeyValuePair<string, double>(row[0], express.Evaluate(row[1])));
 				dataGridViewVars.Rows.Add(row);
+			}
+
+			// Show given functions
+			foreach (Expression.KeyValuePair<string, string[]> kvp in express.Functions)
+			{
+				string[][] row = { new string[] { kvp.Key, ComposeArgs(ref kvp.Value), kvp.Value[0] } };
+				dataGridViewVars.Rows.Add(row);
+			}
+			// Add some sample rows
+			string[][] rowsf = {
+				new string[] { "PlankMass", "", "sqrt( hbar*299792458/6.6742867e-11 )" },
+				new string[] { "Fermat", "a, b, n", "a^n + b^n" },
+				new string[] { "Binet", "n", "(phi^n - (-phi)^-n)/(phi^n - (-phi)^-1)" },
+			};
+			foreach (string[] row in rowsf)
+			{
+				string[] func;
+				DecomposeArgs(row[2], row[1], out func); // No throw with valid predefined data!
+				express.Functions.Add(new Expression.KeyValuePair<string, string[]>(row[0], func));
+				dataGridViewFuncs.Rows.Add(row);
 			}
 		}
 
@@ -142,42 +227,84 @@ namespace NetCalculator
 			// Do not check new line content
 			if (e.RowIndex == dataGridViewVars.NewRowIndex) return;
 
-			// Check table entries
-			string content = e.FormattedValue.ToString();
-			if (e.ColumnIndex == 0) //check identifier name
+			try
 			{
-				if (content.Length > 0 && Expression.Expression.isAlphaChar(content[0]))
+				// Check table entries
+				string content = e.FormattedValue.ToString();
+				if (e.ColumnIndex == 0) //check identifier name
 				{
-					int i;
-					for (i = 1; i < content.Length && Expression.Expression.isAlphaNumericChar(content[i]); i++)
-					{
-					}
-					e.Cancel = i < content.Length;
-				}
-				else e.Cancel = true;
-				if (e.Cancel)
-				{
-					termErrorProvider.SetError(dataGridViewVars, "Invalid identifier name");
-				}
-				else
-				{
+					checkName(ref content);
 					express.Variables[e.RowIndex].Key = content;
-					termErrorProvider.SetError(dataGridViewVars, "");
 				}
-			}
-			else // check expression
-			{
-				try
+				else // check expression
 				{
 					express.Variables[e.RowIndex].Value = express.Evaluate(content);
-					termErrorProvider.SetError(dataGridViewVars, "");
-					e.Cancel = false;
 				}
-				catch (Exception except)
+				termErrorProvider.SetError(dataGridViewVars, "");
+				e.Cancel = false;
+			}
+			catch (Exception except)
+			{
+				termErrorProvider.SetError(dataGridViewVars, except.Message);
+				e.Cancel = true;
+			}
+		}
+
+		private void dataGridViewFuncs_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+		{
+		}
+
+		private void dataGridViewFuncs_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+		{
+			for (int i = 0; i < e.RowCount; i++)
+				express.Functions.RemoveAt(e.RowIndex);
+		}
+
+		private void dataGridViewFuncs_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+		{
+			string[] func;
+			DecomposeArgs(
+				e.Row.Cells[2].Value != null ? e.Row.Cells[2].Value.ToString() : "",
+				e.Row.Cells[1].Value != null ? e.Row.Cells[1].Value.ToString() : "",
+				out func);
+			express.Functions.Add(new Expression.KeyValuePair<string, string[]>(
+				e.Row.Cells[0].Value != null ? e.Row.Cells[0].Value.ToString() : "",
+				func));
+		}
+
+		private void dataGridViewFuncs_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+		{
+		}
+
+		private void dataGridViewFuncs_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+		{
+			// Do not check new line content
+			if (e.RowIndex == dataGridViewFuncs.NewRowIndex) return;
+
+			try
+			{
+				// Check table entries
+				string content = e.FormattedValue.ToString();
+				if (e.ColumnIndex == 0) //check identifier name
 				{
-					termErrorProvider.SetError(dataGridViewVars, except.Message);
-					e.Cancel = true;
+					checkName(ref content);
+					express.Functions[e.RowIndex].Key = content;
 				}
+				else if (e.ColumnIndex == 1)
+				{
+					DecomposeArgs(express.Functions[e.RowIndex].Value[0], content, out express.Functions[e.RowIndex].Value);
+				}
+				else // check definition
+				{
+					express.Functions[e.RowIndex].Value[0] = content;
+				}
+				termErrorProvider.SetError(dataGridViewFuncs, "");
+				e.Cancel = false;
+			}
+			catch (Exception except)
+			{
+				termErrorProvider.SetError(dataGridViewFuncs, except.Message);
+				e.Cancel = true;
 			}
 		}
 	}

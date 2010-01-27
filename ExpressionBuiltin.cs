@@ -18,6 +18,7 @@ namespace Expression
 				new KeyValuePair<string, Parser>("gamma", parser_EulerMascheroni),
 				new KeyValuePair<string, Parser>("EM", parser_EulerMascheroni),
 				new KeyValuePair<string, Parser>("g", parser_g),
+				new KeyValuePair<string, Parser>("atm", parser_atm),
 				new KeyValuePair<string, Parser>("mu0", parser_mu0),
 				new KeyValuePair<string, Parser>("hbar", parser_hbar),
 				new KeyValuePair<string, Parser>("NA", parser_NA),
@@ -130,6 +131,11 @@ namespace Expression
 		protected double parser_g(ref string express, ref int curpos, ref string lexeme, ref Lexeme type)
 		{
 			return 9.80665;
+		}
+
+		protected double parser_atm(ref string express, ref int curpos, ref string lexeme, ref Lexeme type)
+		{
+			return 101325;
 		}
 
 		protected double parser_mu0(ref string express, ref int curpos, ref string lexeme, ref Lexeme type)

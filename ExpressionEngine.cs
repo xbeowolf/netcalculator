@@ -30,7 +30,6 @@ namespace Expression
 		NumDecimal, NumHexadecimal,
 		Parser, Variable, Function,
 		OpComma, OpBoolean, OpRelational, OpBitwise, OpAdditive, OpMultiplicative, OpPower, OpPrefixPostfix, OpBrackets,
-		Term,
 	};
 
 	public delegate double Parser(ref string express, ref int curpos, ref string lexeme, ref Lexeme type);
@@ -729,8 +728,35 @@ namespace Expression
 						if (v.Key == lexeme0) return v.Value;
 					throw new ExpressException("Invalid variable", curpos0, lexeme0);
 
-				case Lexeme.Term:
-					return expressTerm(lexeme0, ref express, ref curpos, ref lexeme, ref type);
+				case Lexeme.Function:
+					foreach (KeyValuePair<string, string[]> v in Functions)
+						if (v.Key == lexeme0)
+						{
+							double d;
+							List<double> args = new List<double>();
+							if (v.Value.Length > 1)
+							{
+								int n = expressFactor(args, ref express, ref curpos, ref lexeme, ref type);
+								if (n < v.Value.Length - 1) throw new ExpressException("Too few arguments to function", curpos0, lexeme0);
+							}
+							int given = 0;
+							try
+							{
+								for (; given < v.Value.Length - 1; given++)
+									Variables.Insert(given, new KeyValuePair<string, double>(v.Value[given + 1], args[given]));
+								d = Evaluate(v.Value[0]);
+							}
+							catch (Exception)
+							{
+								throw;
+							}
+							finally
+							{
+								Variables.RemoveRange(0, given);
+							}
+							return d;
+						}
+					throw new ExpressException("Invalid function", curpos0, lexeme0);
 
 				case Lexeme.OpComma:
 					throw new ExpressException("Unexpected comma operator", curpos0, lexeme0);
@@ -760,28 +786,6 @@ namespace Expression
 		}
 
 		/// <summary>
-		/// Evaluates expression on a given term
-		/// </summary>
-		/// <param name="term">Name of builtin function or constant for wich expression woll be interpreted as arguments</param>
-		/// <param name="express">Expression string to convert</param>
-		/// <param name="curpos">Current position of string expression processing</param>
-		/// <param name="lexeme">Current processing lexeme</param>
-		/// <param name="type">Type of current processing lexeme</param>
-		/// <returns>Result of calculation</returns>
-		protected double expressTerm(string term, ref string express, ref int curpos, ref string lexeme, ref Lexeme type)
-		{
-			// Express parsers
-			foreach (KeyValuePair<string, Parser> v in Parsers)
-				if (v.Key == term) return v.Value(ref express, ref curpos, ref lexeme, ref type);
-
-			// Express variables
-			foreach (KeyValuePair<string, double> v in Variables)
-				if (v.Key == term) return v.Value;
-
-			throw new ExpressException("Unexpected term", curpos, lexeme);
-		}
-
-		/// <summary>
 		/// Extracts new lexeme and adjust current position
 		/// </summary>
 		/// <param name="express">Expression string to convert</param>
@@ -791,7 +795,7 @@ namespace Expression
 		protected void extractLexem(ref string express, ref int curpos, out string lexeme, out Lexeme type)
 		{
 			// Skip space
-			while (curpos < express.Length && express[curpos] == ' ') curpos++;
+			skipSpace(ref express, ref curpos);
 
 			// Test on end of line
 			if (curpos >= express.Length)
@@ -837,6 +841,19 @@ namespace Expression
 				{
 					curpos += v.Key.Length;
 					type = Lexeme.Variable;
+					lexeme = v.Key;
+					return;
+				}
+			}
+
+			// Extract function
+			foreach (KeyValuePair<string, string[]> v in Functions)
+			{
+				if (String.Compare(express, curpos, v.Key, 0, v.Key.Length) == 0 &&
+					!(curpos + v.Key.Length < express.Length && isAlphaNumericChar(express[curpos + v.Key.Length])))
+				{
+					curpos += v.Key.Length;
+					type = Lexeme.Function;
 					lexeme = v.Key;
 					return;
 				}
@@ -910,6 +927,11 @@ namespace Expression
 			}
 			lexeme = express.Substring(start, curpos - start);
 			return;
+		}
+
+		static internal void skipSpace(ref string express, ref int curpos)
+		{
+			while (curpos < express.Length && express[curpos] == ' ') curpos++;
 		}
 
 		/// <summary>
