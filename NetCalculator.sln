@@ -1,12 +1,12 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCalculator", "NetCalculator.csproj", "{ACBF417D-5B9F-4995-A4DE-2A3701CF0AB1}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{AA0B3602-0CF0-4383-9D64-AA6A2CFDE0EF}"
 	ProjectSection(SolutionItems) = preProject
 		doc\NetCalculator.docx = doc\NetCalculator.docx
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCalculator", "NetCalculator.csproj", "{ACBF417D-5B9F-4995-A4DE-2A3701CF0AB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

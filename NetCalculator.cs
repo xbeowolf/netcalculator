@@ -305,7 +305,7 @@ namespace NetCalculator
 
 		private void NetCalculator_Resize(object sender, EventArgs e)
 		{
-			if (TermForm.Visible)
+			if (TermForm != null && TermForm.Visible)
 			{
 				Point p = new Point(this.Location.X, this.Location.Y + this.Height);
 				TermForm.Location = p;
