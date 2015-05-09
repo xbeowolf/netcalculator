@@ -295,7 +295,7 @@ namespace NetCalculator
 
 		private void NetCalculator_Move(object sender, EventArgs e)
 		{
-			if (TermForm.Visible)
+			if (TermForm != null && TermForm.Visible)
 			{
 				Point p = new Point(this.Location.X, this.Location.Y + this.Height);
 				TermForm.Location = p;
@@ -391,14 +391,15 @@ namespace NetCalculator
 			inactiveopacity = 1 - inactiveopacityToolStripComboBox.SelectedIndex * 0.05f;
 		}
 
-		private const float FontFactor = 0.75f;
+		private const float FontFactor = 0.80f;
+		private const float FontRatio = 28f;
 
 		private void scalebyzoomingToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
 		{
 			if (scalebyzoomingToolStripMenuItem.Checked)
 			{
-				richExpression.Font = richResult.Font = new Font(font, 28 * FontFactor, GraphicsUnit.Pixel);
-				richExpression.ZoomFactor = richResult.ZoomFactor = (float)richExpression.Height / 28;
+				richExpression.Font = richResult.Font = new Font(font, FontRatio * FontFactor, GraphicsUnit.Pixel);
+				richExpression.ZoomFactor = richResult.ZoomFactor = (float)richExpression.Height / FontRatio;
 			}
 			else
 			{
@@ -412,7 +413,7 @@ namespace NetCalculator
 			font = fontToolStripComboBox.Text;
 			if (scalebyzoomingToolStripMenuItem.Checked)
 			{
-				richExpression.Font = richResult.Font = new Font(font, 28 * FontFactor, GraphicsUnit.Pixel);
+				richExpression.Font = richResult.Font = new Font(font, FontRatio * FontFactor, GraphicsUnit.Pixel);
 			}
 			else
 			{
@@ -424,7 +425,7 @@ namespace NetCalculator
 		{
 			if (scalebyzoomingToolStripMenuItem.Checked)
 			{
-				richExpression.ZoomFactor = (float)richExpression.Height / 28;
+				richExpression.ZoomFactor = (float)richExpression.Height / FontRatio;
 			}
 			else
 			{
@@ -436,7 +437,7 @@ namespace NetCalculator
 		{
 			if (scalebyzoomingToolStripMenuItem.Checked)
 			{
-				richResult.ZoomFactor = (float)richResult.Height / 28f;
+				richResult.ZoomFactor = (float)richResult.Height / FontRatio;
 			}
 			else
 			{
